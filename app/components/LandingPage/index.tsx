@@ -10,5 +10,7 @@ export function LandingPage() {
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
 
-  return <div className={styles['container']}>LandingPage</div>;
+  return (
+    <div className={styles['container']}>This is Fortescrow Landing page</div>
+  );
 }
