@@ -9,7 +9,23 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, #006877, #39693C)',
+        'gradient-background': 'linear-gradient(to bottom, #CCE0FF,#E5EFFF)',
+        'diagonal-gradient': 'linear-gradient(to right,  #808080, #F7FAFF)',
+      },
+      boxShadow: {
+        'custom-shadow': '0 4px 6px rgba(0, 0, 0, 0.10)',
+      },
+      borderColor: {
+        'custom-orange': '#FF6633',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

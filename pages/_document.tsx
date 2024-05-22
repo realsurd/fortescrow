@@ -55,10 +55,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
           rel="stylesheet"
         />
-        {/* <link
+        <link
           href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
           rel="stylesheet"
-        ></link> */}
+        ></link>
       </Head>
       <body>
         <Main />
