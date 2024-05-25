@@ -123,10 +123,10 @@ export function LoginPage() {
               <FaQuoteLeft style={style} />
             </div>
             <p className="mt-5 text-[12px] text-[#333333]">
-              "As a seller, ForteScrow has been a game-changer for me. I no
+              {`"As a seller, ForteScrow has been a game-changer for me. I no
               longer have to deal with the stress of fraudulent buyers or
               chargebacks. Thanks to ForteScrow, I can focus on growing my
-              business without worrying about payment issues."
+              business without worrying about payment issues."`}
             </p>
             <hr className="mt-5 w-full" />
             <div className="flex w-full mt-2">
