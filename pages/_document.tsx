@@ -4,22 +4,22 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title> Wakanda DAO</title>
+        <title> Forte Escrow</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
         <meta
           name="image"
-          content="https://res.cloudinary.com/dkuwhyun7/image/upload/v1709861971/Group_5_wz7m5r.pngg"
+          content="https://res.cloudinary.com/dlinprg6k/image/upload/v1715569325/image_2_ptmz10.png"
         />
         <link
           rel="shortcut icon"
-          href="https://res.cloudinary.com/dlinprg6k/image/upload/v1710183598/Group_5_nlkqfr.png"
+          href="https://res.cloudinary.com/dlinprg6k/image/upload/v1715569325/image_2_ptmz10.png"
         />
         <link
           rel="apple-touch-icon"
-          href="https://res.cloudinary.com/dlinprg6k/image/upload/v1710183598/Group_5_nlkqfr.png"
+          href="https://res.cloudinary.com/dlinprg6k/image/upload/v1715569325/image_2_ptmz10.png"
         />
 
         <link
