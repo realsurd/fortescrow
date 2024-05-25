@@ -131,7 +131,7 @@ export function LoginPage() {
             <hr className="mt-5 w-full" />
             <div className="flex w-full mt-2">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716195740/anderson_udw0ii.png"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248132/Image_jjq2xo.png"
                 width={50}
                 className="w-10 h-10 my-2 rounded-full border border-custom-orange"
               />
@@ -193,10 +193,12 @@ export function LoginPage() {
               Login
             </button>
             <p className="flex justify-end items-center font-inter text-[#4C4C4C] text-sm">
-              Already have an account? Login
-              <span className="flex items-center justify-center">
-                <GoArrowUpRight className="w-5" />
-              </span>
+              {`Don't have an account?`}
+              <Link href={'/signup'}>
+                <span className="flex items-center ml-2 justify-center">
+                  Sign Up <GoArrowUpRight className="w-5" />
+                </span>
+              </Link>
             </p>
           </div>
           <div className="w-full m-3">

@@ -135,7 +135,7 @@ export function SignUpPage() {
             <hr className="mt-5 w-full" />
             <div className="flex w-full mt-2">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716195740/anderson_udw0ii.png"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248132/Image_jjq2xo.png"
                 width={50}
                 className="w-10 h-10 my-2 rounded-full border border-custom-orange"
               />
