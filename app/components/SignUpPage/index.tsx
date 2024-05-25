@@ -32,7 +32,7 @@ export function SignUpPage() {
             alt="Background"
             className="w-full h-screen object-cover absolute opacity-10"
           />
-           <div className="flex w-full">
+          <div className="flex w-full">
             <div className="flex flex-col justify-start items-start w-full mt-2 mr-5 mb-2 ml-5 p-3 leading-3">
               <div className="mb-1 flex justify-center items-center font-space-grotesk">
                 <div className=" flex flex-col">
@@ -124,13 +124,13 @@ export function SignUpPage() {
 
           <div className="justify-center text-[10px] items-center font-space-grotesk bg-[#FFF] mx-10 rounded-md p-10">
             <div className=" flex items-center">
-              <FaQuoteLeft style={style}/>
+              <FaQuoteLeft style={style} />
             </div>
             <p className="mt-5 text-[12px] text-[#333333]">
-              "As a seller, ForteScrow has been a game-changer for me. I no
+              {` "As a seller, ForteScrow has been a game-changer for me. I no
               longer have to deal with the stress of fraudulent buyers or
               chargebacks. Thanks to ForteScrow, I can focus on growing my
-              business without worrying about payment issues."
+              business without worrying about payment issues."`}
             </p>
             <hr className="mt-5 w-full" />
             <div className="flex w-full mt-2">
@@ -261,15 +261,14 @@ export function SignUpPage() {
             <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md">
               Sign up
             </button>
-            
+
             <p className="flex justify-end items-center font-inter text-[#4C4C4C] text-sm">
-              Already have an account? 
-              <Link href={"/login"}>
-              <span className="flex items-center ml-2 justify-center">
-              Login <GoArrowUpRight className="w-5" />
-              </span>
-            </Link>
-             
+              Already have an account?
+              <Link href={'/login'}>
+                <span className="flex items-center ml-2 justify-center">
+                  Login <GoArrowUpRight className="w-5" />
+                </span>
+              </Link>
             </p>
           </div>
           <div className="w-full m-3">
