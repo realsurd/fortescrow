@@ -149,7 +149,7 @@ export function SignUpPage() {
       </div>
 
       {/* Sign up */}
-      <div className="w-full md:w-[100%] min-h-screen mx-20 my-[70px] font-inter">
+      <div className="w-full md:w-[100%] mx-20 my-[70px] font-inter">
         <div className="flex flex-col justify-center items-center">
           <h1 className="font-bold text-3xl text-[#333333]">Sign Up</h1>
           <p className="text-sm m-2 text-[#4C4C4C]">
