@@ -1,0 +1,87 @@
+@import "../../../styles/index.scss";
+
+.container{
+  width: 100%;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:#f8f8f8;
+
+  .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48%;
+    min-height: 560px;
+    border-radius: 24px;
+    background: #fff;
+    padding: 62px;
+    gap: 60px;
+
+    .top{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      .textContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        
+        .heading{
+          color: #615D61;
+          font-family: "Avenir";
+          font-size: 22px;
+          font-weight: 800;
+          line-height: 28px;
+          text-transform: capitalize;
+        }
+        .author{
+          color: #006877;
+          font-family: "Space Grotesk";
+          font-size: 45px;
+          font-weight: 700;
+          line-height: 64px;
+          letter-spacing: -0.25px;
+          text-transform: capitalize;
+        }
+      }
+      .paragraph{
+        display: flex;
+        flex-direction: column;
+
+        .text{
+          color: #a38b89;
+          font-family: "Avenir";
+          font-size: 20px;
+          font-weight: 350;
+          line-height: 32px;
+          text-align: center;
+        }
+      }
+    }
+    .button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      background: linear-gradient(90deg, #006877 0%, #39693C 100%);
+      padding: 18px 20px;
+      border-radius: 10px;
+      color: #fff;
+      font-family: "Space Grotesk";
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
+      cursor: pointer;
+      width: 100%;
+    }
+  }
+}
