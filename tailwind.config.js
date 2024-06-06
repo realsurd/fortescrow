@@ -13,6 +13,8 @@ module.exports = {
       fontFamily: {
         'space-grotesk': ['Space Grotesk', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        avenir: ['Avenir', 'sans-serif'],
+        lexend: ['Lexend', 'sans-serif'],
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(to right, #006877, #39693C)',
