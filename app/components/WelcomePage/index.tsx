@@ -18,9 +18,9 @@ export function WelcomePage() {
           <div className={styles.paragraph}>
             <div className={styles.text}>
               {`Thank you for signing up! To ensure security, please complete your
-            KYC verification process. Follow the steps in your dashboard to
-            provide necessary documentation. Once completed, you'll unlock full
-            access to ForteScrow's features. Need help? `}
+              KYC verification process. Follow the steps in your dashboard to
+              provide necessary documentation. Once completed, you'll unlock full
+              access to ForteScrow's features. Need help? `}
             </div>
             <div className={styles.text}>Contact our support team.</div>
             <div className={styles.text}>Again, welcome aboard!</div>
