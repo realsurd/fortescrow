@@ -7,6 +7,7 @@ import { data } from './mock';
 import { SelectDropDown } from './selectDropDown';
 import { PersonalForm } from './personalForm';
 import { NextoFKinForm } from './nextOfKinForm';
+import { SettlementForm } from './SettlementForm';
 
 export function KYCForm() {
   const { width } = useWindowDimensions();
@@ -26,7 +27,7 @@ export function KYCForm() {
   if (firstFormCompleted) {
     return <NextoFKinForm onclick={toggleSecondFormFilled} />;
   } else if (secondFormCompleted) {
-    return <div> here is the third page</div>;
+    return <SettlementForm />;
   } else {
     return <PersonalForm onclick={toggleFirstFormFilled} />;
   }

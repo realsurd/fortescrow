@@ -43,7 +43,7 @@ export const NextoFKinForm = ({ onclick }: PersonalFormProps) => {
           ForteScrow
         </Link>
         <div className={styles.completionCards}>
-          {data.map((item, index) => (
+          {data.map((item) => (
             <FormCompletionCard
               id={item.id}
               title={item.title}

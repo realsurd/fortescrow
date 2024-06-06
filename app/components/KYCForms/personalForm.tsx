@@ -37,7 +37,7 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
           ForteScrow
         </Link>
         <div className={styles.completionCards}>
-          {data.map((item, index) => (
+          {data.map((item) => (
             <FormCompletionCard
               id={item.id}
               title={item.title}
@@ -109,7 +109,9 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
             <input type="number" placeholder="Enter phone number..." />
           </div>
         </div>
-        <div className={styles.submit}>Proceed (1/3)</div>
+        <div className={styles.submit} onClick={onclick}>
+          Proceed (1/3)
+        </div>
       </div>
     </div>
   );
