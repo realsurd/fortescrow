@@ -17,7 +17,6 @@ export function ConnectWalletModal({ isActive, onclick }: Props) {
         <div className={styles['card']}>
           <div className={styles['heading-section']}>
             <div className={styles['title']}>Connect a Wallet</div>
-            <div className={styles['text']}>Supported wallets</div>
           </div>
           <div className={styles['options']}>
             {providers?.map((provider, index) => (
