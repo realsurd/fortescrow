@@ -4,18 +4,60 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { data } from './mock';
 import { SelectDropDown } from './selectDropDown';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 interface FormCompleteProps {
   id: number;
   title: string;
   text: string;
 }
+interface FormProps {
+  nin: number;
+  fullName: string;
+  gender: 'Male' | 'Female';
+  email: string;
+  dateOfBirth: string;
+  country: string;
+  state: string;
+  homeAddress: string;
+}
 interface PersonalFormProps {
   onclick: () => void;
+  onSubmit: any;
 }
+const initialState: FormProps = {
+  nin: 0,
+  fullName: '',
+  email: '',
+  gender: 'Male',
+  dateOfBirth: '',
+  country: '',
+  state: '',
+  homeAddress: '',
+};
 
-export const PersonalForm = ({ onclick }: PersonalFormProps) => {
+export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
   const router = useRouter();
+  const [personalForm, setPersonalForm] = useState<FormProps>(initialState);
+  const handleOnChange = (e: any) => {
+    setPersonalForm({ ...personalForm, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    if (
+      personalForm.country ||
+      personalForm.nin ||
+      personalForm.dateOfBirth ||
+      personalForm.email ||
+      personalForm.fullName ||
+      personalForm.homeAddress ||
+      personalForm.state != ''
+    ) {
+      onSubmit(personalForm);
+      console.log('data successfully subitted');
+      onclick();
+    }
+  };
 
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
@@ -64,7 +106,14 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
         <div className={styles.form}>
           <div className={styles.inputContainer}>
             <label>Full Name</label>
-            <input type="text" placeholder="Micah Tom" required />
+            <input
+              type="text"
+              placeholder="Micah Tom"
+              required
+              name={'fullName'}
+              value={personalForm.fullName}
+              onChange={handleOnChange}
+            />
           </div>
           <div className={styles.inputContainer}>
             <label>Email Address</label>
@@ -72,6 +121,9 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
               type="email"
               placeholder="Enter your email address..."
               required
+              name={'email'}
+              value={personalForm.email}
+              onChange={handleOnChange}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -83,7 +135,13 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
           </div>
           <div className={styles.inputContainer}>
             <label>Date of Birth</label>
-            <input type="date" />
+            <input
+              type="date"
+              name={'dateOfBirth'}
+              value={personalForm.dateOfBirth}
+              onChange={handleOnChange}
+              required
+            />
           </div>
           <div className={styles.inputContainer}>
             <label>Country</label>
@@ -101,15 +159,31 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
           </div>
           <div className={styles.inputLongest}>
             <label>Home Address</label>
-            <input type="text" placeholder="House ABC, No 123..." required />
+            <input
+              type="text"
+              placeholder="House ABC, No 123..."
+              required
+              name={'homeAddress'}
+              value={personalForm.homeAddress}
+              onChange={handleOnChange}
+            />
           </div>
           <div className={styles.inputContainer}>
             <label>Means of Identification</label>
-            <input type="text" />
+            <SelectDropDown
+              placeholder="National Identification Number"
+              options={['NIN', 'Passport']}
+            />
           </div>
           <div className={styles.inputContainer}>
             <label>National Identification Number (NIN)</label>
-            <input type="number" placeholder="Enter phone number..." />
+            <input
+              type="number"
+              placeholder="Enter phone number..."
+              name={'nin'}
+              value={personalForm.nin}
+              onChange={handleOnChange}
+            />
           </div>
         </div>
         <div className={styles.submit} onClick={onclick}>

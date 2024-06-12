@@ -5,9 +5,16 @@ import { useState } from 'react';
 interface SelectProps {
   placeholder: string;
   options: string[];
+  name?: string;
+  value?: any;
 }
 
-export const SelectDropDown = ({ placeholder, options }: SelectProps) => {
+export const SelectDropDown = ({
+  placeholder,
+  options,
+  name,
+  value,
+}: SelectProps) => {
   const [dropDownActive, setDropDownActive] = useState(false);
   const [selectedValue, setSelectedValue] = useState(placeholder);
 

@@ -11,10 +11,10 @@ interface FormCompleteProps {
   text: string;
 }
 interface PersonalFormProps {
-  onclick: () => void;
+  onSubmit: () => void;
 }
 
-export const NextoFKinForm = ({ onclick }: PersonalFormProps) => {
+export const NextoFKinForm = ({ onSubmit }: PersonalFormProps) => {
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
       <div
@@ -98,7 +98,7 @@ export const NextoFKinForm = ({ onclick }: PersonalFormProps) => {
             <input type="text" placeholder="House ABC, No 123..." required />
           </div>
         </div>
-        <div className={styles.submit} onClick={onclick}>
+        <div className={styles.submit} onClick={onSubmit}>
           Proceed (2/3)
         </div>
       </div>
