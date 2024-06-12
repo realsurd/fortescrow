@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import { data } from './mock';
 import { SelectDropDown } from './selectDropDown';
+import { useRouter } from 'next/router';
 
 interface FormCompleteProps {
   id: number;
@@ -14,6 +15,8 @@ interface PersonalFormProps {
 }
 
 export const PersonalForm = ({ onclick }: PersonalFormProps) => {
+  const router = useRouter();
+
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
       <div
@@ -49,7 +52,7 @@ export const PersonalForm = ({ onclick }: PersonalFormProps) => {
       </div>
 
       <div className={styles.rightContainer}>
-        <div className={styles.skip} onClick={onclick}>
+        <div className={styles.skip} onClick={() => router.push('/dashboard')}>
           Skip
         </div>
         <div className={styles.headerContainer}>
