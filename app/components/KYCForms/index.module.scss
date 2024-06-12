@@ -11,19 +11,19 @@
   display: flex;
   gap: 50px;
   flex-direction: column;
-  width: 39%;
+  width: 37%;
   min-height: 100vh;
   border-right: 1px solid #E5EFFF;
-  padding-top: 70px;
+  padding-top: 100px;
   padding-right: 0;
-  padding-left: 70px;
+  padding-left: 50px;
   background: #F7FAFF;
 
   .heading{
     color: #006877;
     cursor: pointer;
     font-family: "Space Grotesk";
-    font-size: 32px;
+    font-size: 35px;
     font-weight: 700;
     line-height: 40px;
   }

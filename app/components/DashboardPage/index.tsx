@@ -2,13 +2,40 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { BiCircleThreeQuarter } from 'react-icons/bi';
 import '../../../styles/main.css';
 import Link from 'next/link';
+import { useWallet } from '@txnlab/use-wallet';
+import { useState } from 'react';
+import { ConnectWalletModal } from './connectModal';
+import { useNotify } from '@/hooks';
 
 export function DashboardPage() {
   const { width } = useWindowDimensions();
+  const [connectWalletModal, setConnectWalletModal] = useState(false);
+  const { activeAddress, providers } = useWallet();
+  const { notify } = useNotify();
+  const disconnectWallet = () => {
+    providers?.forEach((provider) => provider.disconnect());
+  };
+  const clearConnectModal = () => {
+    setConnectWalletModal(false);
+  };
+  const connectWalletMessage = () => {
+    setTimeout(() => {
+      notify.info(`Please Connect Your Wallet`);
+    }, 1500);
+  };
+  const toggleConnectWallet = () => {
+    setConnectWalletModal(!connectWalletModal);
+  };
   const isMobile = width ? width < 768 : false;
 
   return (
     <div className="flex h-screen bg-gray-100 font-space-grotesk">
+      {connectWalletModal && (
+        <ConnectWalletModal
+          isActive={activeAddress ? false : true}
+          onclick={clearConnectModal}
+        />
+      )}
       {/* sidebar */}
       <div className="w-64 shadow text-black flex-shrink-0">
         <Link href={'/'}>
@@ -117,7 +144,7 @@ export function DashboardPage() {
                 alt="wallet-deposit"
                 className="w-[30px]"
               />
-              <button className=" text-[#39693C] px-4 py-2">Deopsit</button>
+              <button className=" text-[#39693C] px-4 py-2">Deposit</button>
             </div>
             <div className="flex items-center justify-center bg-[#FFDAD64D]  rounded-full">
               <img
@@ -133,7 +160,21 @@ export function DashboardPage() {
                 alt="wallet-deposit"
                 className="w-[30px]"
               />
-              <button className="px-4 py-2">Connect Wallet</button>
+              <button
+                className="px-4 py-2"
+                onMouseEnter={() => {
+                  !activeAddress && connectWalletMessage();
+                }}
+                onClick={() => {
+                  activeAddress ? disconnectWallet() : toggleConnectWallet();
+                }}
+              >
+                {activeAddress
+                  ? `${activeAddress?.substring(0, 3)}` +
+                    `...` +
+                    `${activeAddress?.substring(55)}`
+                  : ` Connect Wallet`}
+              </button>
             </div>
             <div className="flex items-center justify-center p-2 bg-[#FFDAD64D]  text-white text-sm  rounded-full">
               <img
@@ -162,7 +203,7 @@ export function DashboardPage() {
               This is where your main content will go.
             </p>
           </div>
-        </main> 
+        </main>
       </div>
     </div>
   );

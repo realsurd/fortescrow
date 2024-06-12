@@ -1,0 +1,82 @@
+@import '../../../../styles/index.scss';
+
+/*change password overlay*/
+.card, .card-claim{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: #46464A;
+    color: #fff;
+    border-radius: 8px;
+    width: 90%;
+    min-height: 412px;
+    padding: 32px;
+    gap: 10px;
+    z-index: 100;
+
+    @include tablet{
+        width: 412px;
+        gap: 16px;
+        padding: 64px;
+    }
+
+    .heading-section{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-family: "Space Grotesk";
+
+        .title{
+            font-size: 24px;
+            font-weight: 700;
+
+            @include tablet{
+                font-size: 32px;
+            }
+        }
+
+        .text{
+            color: #C7C6CA;
+            font-size: 16px;
+            
+            @include tablet{
+                font-size: 22px;
+            }
+        }
+    }
+
+    .options{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .bar{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+
+            img{
+                width: 40px;
+                height: 40px;
+
+                @include tablet{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+    
+}
+
+.card-claim{
+
+    @include tablet{
+        width: 450px;
+        padding: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+}
