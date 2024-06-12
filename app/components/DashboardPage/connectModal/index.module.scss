@@ -6,9 +6,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background: #46464A;
+    background: #fff;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 36px;
     width: 90%;
     min-height: 412px;
     padding: 32px;
@@ -28,20 +28,15 @@
         font-family: "Space Grotesk";
 
         .title{
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
+            font-family: "Space Grotesk";
+            line-height: 40px;
+            color: #006877;
+            border-bottom: 1px solid grey;
 
             @include tablet{
                 font-size: 32px;
-            }
-        }
-
-        .text{
-            color: #C7C6CA;
-            font-size: 16px;
-            
-            @include tablet{
-                font-size: 22px;
             }
         }
     }
@@ -56,6 +51,12 @@
             align-items: center;
             gap: 16px;
             cursor: pointer;
+            color: #322F33;
+            font-family: "Space Grotesk";
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 28px;
+
 
             img{
                 width: 40px;

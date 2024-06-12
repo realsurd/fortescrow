@@ -18,8 +18,9 @@
         align-items: center;
         height: 100%;
         width: 100%;
-        background: #1E1E1ECC;
+        background-color: #1E1E1ECC;
         position: absolute;
+        backdrop-filter: blur(2px);
     }
 
     h1,
