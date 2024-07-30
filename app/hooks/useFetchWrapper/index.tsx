@@ -3,9 +3,7 @@ import { RequestMethod } from '../../enums/requestMethod.enum';
 import { RequestOptions } from '../../interfaces/requestOption.interface';
 
 export const useFetchWrapper = () => {
-  // const apiUrl = 'https://api.daowakanda.com';
-  // const apiUrl = 'https://api.daowakanda.com/api/v1/proposals';
-  const apiUrl = 'https://daowkd-a061a68c3343.herokuapp.com/api/v1/proposals';
+  const apiUrl = 'https://fortescrow-35a70a0b1913.herokuapp.com'
 
   const handleResponse = useCallback((response: any) => {
     return response.text().then(async (text: string) => {
