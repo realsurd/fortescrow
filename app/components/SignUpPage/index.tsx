@@ -1,20 +1,100 @@
 import { GoArrowUpRight } from 'react-icons/go';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
-import styles from './index.module.scss';
 import { FaQuoteLeft } from 'react-icons/fa';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useNotify } from '@/hooks';
+import { useSignUpActions } from '@/features/signup/actions/signup.action';
+import { ThreeDots } from 'react-loader-spinner';
 
 export function SignUpPage() {
-  // const [activeDropDown, setActiveDropDown] = useState(false);
-  // const [activeDropDownTwo, setActiveDropDownTwo] = useState(false);
-  // const [openSideNav, setOpenSideNav] = useState(false);
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [country, setCountry] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { registerUser } = useSignUpActions();
 
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
 
+  const { notify } = useNotify();
+
   const style = {
     color: '#E5EFFF',
     fontSize: '3em',
+  };
+
+  const isEmpty =
+    !firstName ||
+    !lastName ||
+    !password ||
+    !confirmPassword ||
+    !country ||
+    !email ||
+    !phone
+      ? true
+      : false;
+  const passwordsMatches = password === confirmPassword ? true : false;
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    if (isEmpty) {
+      notify.error('Fill all details');
+      setLoading(false);
+      return;
+    }
+    if (!isEmpty && !passwordsMatches) {
+      notify.error('Passwords does not match');
+      setLoading(false);
+      return;
+    }
+    if (!isEmpty && passwordsMatches) {
+      //get the data
+      const registeredData = {
+        first_name: firstName,
+        last_name: lastName,
+        password,
+        email,
+        user_type: 'Business',
+      };
+      const Data = {
+        firstName,
+        lastName,
+        phone,
+        email,
+        country,
+        password,
+        confirmPassword,
+      };
+
+      console.log(Data), console.log(registeredData);
+
+      //send the data to the api endpoint
+      const response = await registerUser(registeredData);
+
+      if (response.error) {
+        notify.error(response.error?.toString() || 'Network error');
+        setLoading(false);
+        return;
+      } else {
+        setLoading(false);
+        //clear off the input fields
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setCountry('');
+        setPhone('');
+        //success notification
+        notify.success('User successfully signed up.');
+      }
+    }
   };
 
   return (
@@ -167,6 +247,8 @@ export function SignUpPage() {
                 type="text"
                 className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
                 placeholder="Micha"
+                value={firstName}
+                onChange={(e: any) => setFirstName(e.target.value)}
               />
             </div>
 
@@ -181,6 +263,8 @@ export function SignUpPage() {
                 type="text"
                 className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter Last Name"
+                value={lastName}
+                onChange={(e: any) => setLastName(e.target.value)}
               />
             </div>
           </div>
@@ -196,6 +280,8 @@ export function SignUpPage() {
               type="email"
               className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
               placeholder="Enter Your Email"
+              value={email}
+              onChange={(e: any) => setEmail(e.target.value)}
             />
           </div>
 
@@ -206,8 +292,10 @@ export function SignUpPage() {
               </label>
               <input
                 type="text"
-                className="h-10 border text-[13px]  border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
-                placeholder="Select Country...."
+                className="h-10 border text-[13px]  border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                placeholder="Select Country"
+                value={country}
+                onChange={(e: any) => setCountry(e.target.value)}
               />
             </div>
 
@@ -222,6 +310,8 @@ export function SignUpPage() {
                 type="text"
                 className="h-10 border text-[13px] mt-1 border-gray-300 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter Phone Number"
+                value={phone}
+                onChange={(e: any) => setPhone(e.target.value)}
               />
             </div>
           </div>
@@ -238,6 +328,8 @@ export function SignUpPage() {
                 type="password"
                 className="h-10 border text-[13px] border-gray-300  mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e: any) => setPassword(e.target.value)}
               />
             </div>
 
@@ -250,8 +342,10 @@ export function SignUpPage() {
               </label>
               <input
                 type="password"
-                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
-                placeholder="Re-Enter Password"
+                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e: any) => setConfirmPassword(e.target.value)}
               />
             </div>
           </div>
@@ -267,8 +361,23 @@ export function SignUpPage() {
           </div>
 
           <div className="w-full">
-            <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md">
-              Sign up
+            <button
+              className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md"
+              onClick={handleSubmit}
+            >
+              {loading && (
+                <ThreeDots
+                  visible={true}
+                  height="20"
+                  width="80"
+                  color="#fff"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              )}
+              {loading ? `Signing Up...` : `Sign Up`}
             </button>
 
             <p className="flex justify-end items-center font-inter text-[#4C4C4C] text-sm">
