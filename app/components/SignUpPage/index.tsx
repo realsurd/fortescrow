@@ -160,61 +160,67 @@ export function SignUpPage() {
         <div className="flex flex-col items-center justify-center mx-auto my-5 w-full md:w-[70%]">
           <div className="flex flex-col md:flex-row mb-5 w-full">
             <div className="flex justify-between w-full md:w-[50%] mr-0 md:mr-10 flex-col">
-              <label htmlFor="first-name" className="text-[12px]">
+              <label htmlFor="first-name" className="text-[12px] font-semibold">
                 First Name
               </label>
               <input
                 type="text"
-                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
                 placeholder="Micha"
               />
             </div>
 
             <div className="flex flex-col w-full md:w-[50%] mt-5 md:mt-0">
-              <label htmlFor="last-name" className="text-[12px] text-[#333333]">
+              <label
+                htmlFor="last-name"
+                className="text-[12px] font-semibold text-[#333333]"
+              >
                 Last Name
               </label>
               <input
                 type="text"
-                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter Last Name"
               />
             </div>
           </div>
 
           <div className="flex flex-col w-full">
-            <label htmlFor="email" className="text-[12px] m-1 text-[#333333]">
+            <label
+              htmlFor="email"
+              className="text-[12px] m-1 font-semibold text-[#333333]"
+            >
               Email
             </label>
             <input
               type="email"
-              className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+              className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
               placeholder="Enter Your Email"
             />
           </div>
 
           <div className="flex flex-col md:flex-row mb-5 w-full">
             <div className="flex justify-between w-full md:w-[50%] mr-0 md:mr-10 flex-col">
-              <label htmlFor="country" className="text-[12px]">
+              <label htmlFor="country" className="text-[12px] font-semibold">
                 Country
               </label>
               <input
                 type="text"
-                className="h-10 border text-[13px]  border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
-                placeholder="Select Country"
+                className="h-10 border text-[13px]  border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                placeholder="Select Country...."
               />
             </div>
 
             <div className="flex flex-col w-full md:w-[50%] mt-5 md:mt-0">
               <label
                 htmlFor="phone-number"
-                className="text-[12px] text-[#333333]"
+                className="text-[12px] text-[#333333] font-semibold"
               >
                 Phone Number
               </label>
               <input
                 type="text"
-                className="h-10 border text-[13px] mt-1 border-gray-300 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                className="h-10 border text-[13px] mt-1 border-gray-300 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter Phone Number"
               />
             </div>
@@ -222,12 +228,15 @@ export function SignUpPage() {
 
           <div className="flex flex-col md:flex-row mb-5 w-full">
             <div className="flex justify-between w-full md:w-[50%] mr-0 md:mr-10 flex-col">
-              <label htmlFor="password" className="text-[12px] text-black">
+              <label
+                htmlFor="password"
+                className="text-[12px] text-black font-semibold"
+              >
                 Password
               </label>
               <input
                 type="password"
-                className="h-10 border text-[13px] border-gray-300  mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                className="h-10 border text-[13px] border-gray-300  mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter your password"
               />
             </div>
@@ -235,14 +244,14 @@ export function SignUpPage() {
             <div className="flex flex-col w-full md:w-[50%] mt-5 md:mt-0">
               <label
                 htmlFor="confirm-password"
-                className="text-[12px] text-[#333333]"
+                className="text-[12px] text-[#333333] font-semibold"
               >
                 Confirm Password
               </label>
               <input
                 type="password"
-                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
-                placeholder="Confirm your password"
+                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-7 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                placeholder="Re-Enter Password"
               />
             </div>
           </div>
