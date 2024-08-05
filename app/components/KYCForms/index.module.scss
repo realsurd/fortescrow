@@ -1,22 +1,25 @@
 @import "../../../styles/index.scss";
 
 .container{
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   scroll-behavior: smooth;
   position: relative;
   display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
 .leftContainer{
   display: flex;
   gap: 50px;
   flex-direction: column;
-  width: 37%;
-  min-height: 100vh;
+  width: 342px;
+  height: 100vh;
   border-right: 1px solid #E5EFFF;
   padding-top: 100px;
   padding-right: 0;
-  padding-left: 50px;
+  padding-left: 20px;
   background: #F7FAFF;
 
   .heading{
@@ -81,15 +84,15 @@
 
 
 .rightContainer{
+  flex: 1;
   display: flex;
-  width:100%;
-  min-height: 100vh;
+  height: 100vh;
   overflow-y: scroll;
   flex-direction: column;
   gap: 50px;
-  padding: 40px 50px 40px 50px;
+  padding: 40px 120px 40px 120px;
   background: #f8f8f8;
-
+  
   .skip{
     cursor: pointer;
     display: flex;
@@ -128,6 +131,7 @@
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(2, 1fr);
+
 
     .inputContainer, .inputLongest{
       display: flex;
@@ -200,10 +204,28 @@
         flex-direction: column;
         border: 1px solid #AFAAAE;
         background: #fff;
-        min-height: fit-content;
-        z-index: 1;
-        overflow: visible;
+        height: 120px;
+        scroll-behavior: smooth;
+        z-index: 100;
         border-radius: 8px;
+        overflow: auto;
+        scrollbar-width: 5px;
+        scrollbar-color: #101828;
+
+        /* Works on Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #f2f4f7;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #858585;
+          border-radius: 20px;
+          border: 3px solid #f2f4f7;
+        }
 
         option{
           display: flex;

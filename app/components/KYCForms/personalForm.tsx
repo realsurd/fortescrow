@@ -5,6 +5,7 @@ import { data } from './mock';
 import { SelectDropDown } from './selectDropDown';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useNotify } from '@/hooks';
 
 interface FormCompleteProps {
   id: number;
@@ -14,50 +15,61 @@ interface FormCompleteProps {
 interface FormProps {
   nin: number;
   fullName: string;
-  gender: 'Male' | 'Female';
+  gender: string;
   email: string;
   dateOfBirth: string;
   country: string;
   state: string;
   homeAddress: string;
 }
-interface PersonalFormProps {
-  onclick: () => void;
-  onSubmit: any;
-}
+
 const initialState: FormProps = {
   nin: 0,
   fullName: '',
   email: '',
-  gender: 'Male',
+  gender: 'Select one',
   dateOfBirth: '',
   country: '',
   state: '',
   homeAddress: '',
 };
 
-export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
+export const PersonalForm = () => {
   const router = useRouter();
   const [personalForm, setPersonalForm] = useState<FormProps>(initialState);
+  const [gender, setGender] = useState('Select one');
+  const [country, setCountry] = useState('Select one');
+  const [state, setState] = useState('Select one');
+  const [MeansOfId, setMeansOfId] = useState('Select one');
+  const {notify} = useNotify();
+
   const handleOnChange = (e: any) => {
     setPersonalForm({ ...personalForm, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
     if (
-      personalForm.country ||
       personalForm.nin ||
       personalForm.dateOfBirth ||
       personalForm.email ||
       personalForm.fullName ||
       personalForm.homeAddress ||
-      personalForm.state != ''
+      personalForm.state != '' && gender || country || state || MeansOfId != 'select one'
     ) {
-      onSubmit(personalForm);
+      
       console.log('data successfully subitted');
-      onclick();
+      notify.success('data successfully subitted')
+      console.log({fullName: personalForm.fullName, email: personalForm.email, address: personalForm.homeAddress, dob: personalForm.dateOfBirth, gender, state, country, MeansOfId, nin: personalForm.nin});
+      router.push('/nextofkin');
+    }else{
+      notify.error('fill all details')
     }
   };
+
+  const next =()=>{
+    router.push('/nextofkin');
+    console.log({fullName: personalForm.fullName, email: personalForm.email, address: personalForm.homeAddress, dob: personalForm.dateOfBirth, gender, state, country, MeansOfId, nin: personalForm.nin});
+  }
 
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
@@ -131,6 +143,8 @@ export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
             <SelectDropDown
               placeholder="Select one.."
               options={['Male', 'Female']}
+              value={gender}
+              onChange={(val)=> setGender(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -148,6 +162,8 @@ export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
             <SelectDropDown
               placeholder="Select one.."
               options={['Algeria', 'Nigeria', 'Tinusia']}
+              value={country}
+              onChange={(val)=> setCountry(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -155,6 +171,8 @@ export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
             <SelectDropDown
               placeholder="Select one.."
               options={['Abuja', 'Lagos', 'Imo', 'Nigeria', 'Tinusia']}
+              value={state}
+              onChange={(val)=> setState(val)}
             />
           </div>
           <div className={styles.inputLongest}>
@@ -171,8 +189,10 @@ export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
           <div className={styles.inputContainer}>
             <label>Means of Identification</label>
             <SelectDropDown
-              placeholder="National Identification Number"
+              placeholder="Select one"
               options={['NIN', 'Passport']}
+              value={MeansOfId}
+              onChange={(val)=> setMeansOfId(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -186,7 +206,7 @@ export const PersonalForm = ({ onclick, onSubmit }: PersonalFormProps) => {
             />
           </div>
         </div>
-        <div className={styles.submit} onClick={onclick}>
+        <div className={styles.submit} onClick={next}>
           Proceed (1/3)
         </div>
       </div>

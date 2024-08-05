@@ -3,15 +3,67 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { FaQuoteLeft } from 'react-icons/fa';
 import '../../../styles/main.css';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useNotify } from '@/hooks';
+import { useRouter } from 'next/router';
+import { useLoginActions } from '@/features/login/actions/login.action';
+import { ThreeDots } from 'react-loader-spinner';
 
 export function LoginPage() {
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
+  const { push } = useRouter();
 
   const style = {
     color: '#E5EFFF',
     fontSize: '3em',
   };
+
+  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { signInUser } = useLoginActions();
+
+  const { notify } = useNotify();
+  
+  const isEmpty = !email || !password  ? true : false;
+
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    if(isEmpty){
+      notify.error('Fill all details');
+      setLoading(false);
+      return;
+    }
+
+    const loginData = {
+      email,
+      password,
+    }
+
+    console.log(loginData);
+
+    //send the data to the api endpoint
+    const response = await signInUser(loginData);
+
+    if(response.error){
+      notify.error(response.error?.toString() || 'Network error');
+      setLoading(false);
+      return;
+    }else{
+      setLoading(false);
+      //clear off the input fields
+      setEmail('');
+      setPassword('');
+      //success notification
+      notify.success('User successfully signed in.');
+      //pushes user to the next page
+      push('/knowyourcustomer');
+    }
+  
+  }
 
   return (
     <div className="flex justify-between font-space-grotesk items-start w-full h-[100vh] mb-10 overflow-y-auto">
@@ -162,6 +214,8 @@ export function LoginPage() {
               type="email"
               className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
               placeholder="Userexample@gmail.com"
+              value={email}
+              onChange={(e:any) => setEmail(e.target.value)}
             />
           </div>
 
@@ -174,6 +228,8 @@ export function LoginPage() {
                 type="password"
                 className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e:any) => setPassword(e.target.value)}
               />
               <p className="flex justify-end items-end font-inter text-[#4C4C4C] text-sm">
                 forgot password?
@@ -189,8 +245,22 @@ export function LoginPage() {
           </div>
 
           <div className="w-full">
-            <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md">
-              Login
+            <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md"
+              onClick={handleSubmit}
+            >
+              {loading && (
+                <ThreeDots
+                  visible={true}
+                  height="20"
+                  width="80"
+                  color="#fff"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              )}
+              {loading ? `Loading...` : `Login`}
             </button>
             <p className="flex justify-end items-center font-inter text-[#4C4C4C] text-sm">
               {`Don't have an account?`}
