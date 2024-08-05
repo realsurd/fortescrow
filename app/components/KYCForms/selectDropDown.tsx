@@ -1,32 +1,36 @@
 import styles from './index.module.scss';
 import { MdArrowDropDown } from 'react-icons/md';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface SelectProps {
   placeholder: string;
   options: string[];
-  name?: string;
   value?: any;
+  onChange?: (val:string) => any;
 }
 
 export const SelectDropDown = ({
   placeholder,
   options,
-  name,
   value,
+  onChange = () => null,
 }: SelectProps) => {
   const [dropDownActive, setDropDownActive] = useState(false);
   const [selectedValue, setSelectedValue] = useState(placeholder);
 
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
+  
   return (
     <div className={styles.selectContainer}>
       <div
         className={dropDownActive ? styles.activeSelect : styles.selectInput}
+        onClick={() => setDropDownActive(!dropDownActive)}
       >
         {selectedValue}
         <MdArrowDropDown
           className={styles.icon}
-          onClick={() => setDropDownActive(!dropDownActive)}
         />
       </div>
       {dropDownActive && (
@@ -47,6 +51,7 @@ export const SelectDropDown = ({
               onClick={() => {
                 setSelectedValue(item);
                 setDropDownActive(!dropDownActive);
+                onChange(item)
               }}
             >
               {item}

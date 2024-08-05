@@ -3,15 +3,67 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { FaQuoteLeft } from 'react-icons/fa';
 import '../../../styles/main.css';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useNotify } from '@/hooks';
+import { useRouter } from 'next/router';
+import { useLoginActions } from '@/features/login/actions/login.action';
+import { ThreeDots } from 'react-loader-spinner';
 
 export function LoginPage() {
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
+  const { push } = useRouter();
 
   const style = {
     color: '#E5EFFF',
     fontSize: '3em',
   };
+
+  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { signInUser } = useLoginActions();
+
+  const { notify } = useNotify();
+  
+  const isEmpty = !email || !password  ? true : false;
+
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    if(isEmpty){
+      notify.error('Fill all details');
+      setLoading(false);
+      return;
+    }
+
+    const loginData = {
+      email,
+      password,
+    }
+
+    console.log(loginData);
+
+    //send the data to the api endpoint
+    const response = await signInUser(loginData);
+
+    if(response.error){
+      notify.error(response.error?.toString() || 'Network error');
+      setLoading(false);
+      return;
+    }else{
+      setLoading(false);
+      //clear off the input fields
+      setEmail('');
+      setPassword('');
+      //success notification
+      notify.success('User successfully signed in.');
+      //pushes user to the next page
+      push('/knowyourcustomer');
+    }
+  
+  }
 
   return (
     <div className="flex justify-between font-space-grotesk items-start w-full h-[100vh] mb-10 overflow-y-auto">
@@ -167,39 +219,35 @@ export function LoginPage() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center mx-auto my-5 md:w-[70%]">
-            <div className="mb-10 md:mb-4 flex flex-col w-full ">
-              <label
-                htmlFor="email"
-                className="text-[12px] m-1 text-[#333333] font-bold"
-              >
-                Email
+        <div className="flex flex-col items-center justify-center mx-auto my-5 md:w-[70%]">
+          <div className="flex flex-col w-full">
+            <label htmlFor="email" className="text-[12px] m-1 text-[#333333]">
+              Email
+            </label>
+            <input
+              type="email"
+              className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+              placeholder="Userexample@gmail.com"
+              value={email}
+              onChange={(e:any) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col mb-5 w-full">
+            <div className="flex justify-between w-full md:w-full mr-0 md:mr-10 flex-col">
+              <label htmlFor="password" className="text-[12px] text-black">
+                Password
               </label>
               <input
-                type="email"
-                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-8 md:p-4 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
-                placeholder="Userexample@gmail.com"
+                type="password"
+                className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
+                placeholder="Enter your password"
               />
+              <p className="flex justify-end items-end font-inter text-[#4C4C4C] text-sm">
+                forgot password?
+              </p>
             </div>
-
-            <div className="flex flex-col mb-5 w-full">
-              <div className="flex justify-between w-full md:w-full mr-0 md:mr-10 flex-col">
-                <label
-                  htmlFor="password"
-                  className="text-[12px] text-[#333333] font-bold"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-8 md:p-4 w-full bg-gray-50 focus:outline-none focus:border-[#A4EEFF] focus:ring-1 focus:ring-[#A4EEFF] focus:shadow-sm focus:shadow-white"
-                  placeholder="Enter your password"
-                />
-                <p className="flex justify-end items-end font-inter text-[#4C4C4C] mt-3 md:mt-2 text-sm">
-                  forgot password?
-                </p>
-              </div>
-            </div>
+          </div>
 
             <div className="w-full mb-5">
               <div className="flex items-center">
@@ -213,46 +261,46 @@ export function LoginPage() {
               </div>
             </div>
 
-            <div className="w-full">
-              <button className="p-7 font-space-grotesk font-semibold md:p-4 border w-full items-center bg-custom-gradient text-white rounded-2xl md:rounded-md">
-                Login
-              </button>
-              <p className="flex justify-end items-center font-inter m-3 md:m-5 text-[#4C4C4C] text-sm">
-                {`Don't have an account?`}
-                <Link href={'/signup'}>
-                  <span className="flex underline underline-offset-1 font-bold items-center ml-2 justify-center">
-                    Sign Up <GoArrowUpRight className="w-5" />
-                  </span>
-                </Link>
-              </p>
-            </div>
-            <div className="w-full">
-              <div className="flex items-center">
-                <div className="flex-grow border-t border-gray-100"></div>
-                <span className="mx-4 text-sm text-[#4C4C4C]">OR</span>
-                <div className="flex-grow border-t border-gray-100"></div>
-              </div>
+          <div className="w-full">
+            <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md">
+              Login
+            </button>
+            <p className="flex justify-end items-center font-inter text-[#4C4C4C] text-sm">
+              {`Don't have an account?`}
+              <Link href={'/signup'}>
+                <span className="flex items-center ml-2 justify-center">
+                  Sign Up <GoArrowUpRight className="w-5" />
+                </span>
+              </Link>
+            </p>
+          </div>
+          <div className="w-full m-3">
+            <div className="flex items-center">
+              <div className="flex-grow border-t border-gray-100"></div>
+              <span className="mx-4 text-sm text-[#4C4C4C]">OR</span>
+              <div className="flex-grow border-t border-gray-100"></div>
             </div>
           </div>
-          <div className="flex justify-between items-center mx-[25px] mt-20 md:mx-[80px] md:w-[50%]">
-            <div className="flex items-center align-center justify-center">
-              <div className="flex items-center justify-center md:ml-[160px] p-3 w-[100px] bg-[#F7FAFF]  rounded-md">
-                <img
-                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716163547/googleLogo_knrnzk.png"
-                  width={50}
-                  className="w-[40px]"
-                />
-              </div>
+        </div>
+        <div className="flex justify-between items-center w-[50%]">
+          <div className="flex items-center align-center justify-center">
+            <div className="flex items-center justify-center ml-[160px] p-3 w-[100px] bg-[#F7FAFF] rounded-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716163547/googleLogo_knrnzk.png"
+                width={50}
+                className="w-[30px]"
+              />
             </div>
-            <div className="flex items-center align-center justify-center">
-              <div className="flex items-center justify-center ml-[50px] p-3 w-[100px] bg-[#F7FAFF] rounded-md">
-                <img
-                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716171724/fb_logo_edu1b5.png"
-                  width={50}
-                  className="w-[60px]"
-                />
-              </div>
+          </div>
+          <div className="flex items-center align-center justify-center">
+            <div className="flex items-center justify-center ml-[50px] p-3 w-[100px] bg-[#F7FAFF] rounded-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716171724/fb_logo_edu1b5.png"
+                width={50}
+                className="w-[50px]"
+              />
             </div>
+          </div>
 
             <div className="flex items-center align-center justify-center">
               <div className="flex items-center justify-center ml-[50px] p-3 w-[100px] bg-[#F7FAFF] rounded-md">

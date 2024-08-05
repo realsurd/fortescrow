@@ -8,6 +8,8 @@
   position: relative;
   background: #f8f8f8;
 
+  @include tablet{}
+
   .hero-section{
     display: flex;
     flex-direction: column;
