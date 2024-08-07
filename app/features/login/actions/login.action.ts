@@ -9,7 +9,7 @@ export const useLoginActions = () => {
   const signInUser = useCallback(async (dto: LoginUserDto) => {
     try {
       const response = await fetchWrapper.post(
-        '/users/users/signin',
+        'users/users/signin',
         dto,
       );
 
