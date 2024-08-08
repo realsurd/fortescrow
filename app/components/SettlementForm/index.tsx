@@ -11,14 +11,14 @@ export function SettlementForm() {
 
   return (
     <div className="flex justify-between font-space-grotesk w-full mb-10 overflow-y-auto">
-      <div className="items-start w-[30%] h-[100vh]  shadow-lg ">
+      <div className="bg-[#F7FAFF] items-start w-[342px] min-h-[100vh]  shadow-lg ">
         <div className="m-10 min-h-[100vh] bg-cover bg-center relative">
           <Link href={'/'}>
-            <h1 className="flex bg-white justify-center font-bold text-[#006877] text-[35px]">
+            <h1 className="flex justify-center font-bold text-[#006877] text-[35px]">
               ForteScrow
             </h1>
           </Link>
-          <div className="flex items-center mx-[60px] my-[40px] w-full">
+          <div className="flex items-center mx-[40px] my-[40px] w-full">
             <h1 className="text-[12px] mr-3 text-[#999999]">01</h1>
             <div className="flex flex-col font-inter">
               <h5 className="text-sm">Personal Information</h5>
@@ -26,12 +26,12 @@ export function SettlementForm() {
                 Lets get to know you...
               </p>
             </div>
-            <div className="ml-[75px]">
+            <div className="ml-[25px]">
               <BsCheckLg className="bg-[#00b300] p-1 text-white text-[20px]  rounded-full" />
             </div>
           </div>
 
-          <div className="flex items-center mx-[60px] my-[40px] w-full">
+          <div className="flex items-center mx-[40px] my-[40px] w-full">
             <h1 className="text-[12px] mr-3 text-[#999999]">02</h1>
             <div className="flex flex-col font-inter">
               <h5 className="text-sm">Next of Kin</h5>
@@ -39,12 +39,12 @@ export function SettlementForm() {
                 Who should we contact?
               </p>
             </div>
-            <div className="ml-[60px]">
+            <div className="ml-[10px]">
               <BsCheckLg className="bg-[#00b300] p-1 text-white text-[20px]  rounded-full" />
             </div>
           </div>
 
-          <div className="flex items-center mx-[60px] my-[40px] w-full">
+          <div className="flex items-center mx-[40px] my-[40px] w-full">
             <h1 className="text-[12px] mr-3 text-[#999999]">03</h1>
             <div className="flex flex-col font-inter">
               <h5 className="text-sm">Settlement Arrangements</h5>
@@ -52,7 +52,7 @@ export function SettlementForm() {
                 Tell us about yourself
               </p>
             </div>
-            <div className="ml-[38px]">
+            <div className="ml-[10px]">
               <MdKeyboardArrowRight className="p-1 text-[35px]" />
             </div>
           </div>
@@ -60,7 +60,7 @@ export function SettlementForm() {
       </div>
 
       {/* Payment Procedure */}
-      <div className="w-full md:w-[100%] mx-20 my-[50px] font-space-grotesk">
+      <div className=" w-full md:w-[100%] px-[120px] py-[40px] font-space-grotesk">
         <div className="flex m-7 flex-col justify-center items-center">
           <h1 className="font-bold text-3xl text-[#006877]">
             Payment Procedures
