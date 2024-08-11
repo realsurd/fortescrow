@@ -11,13 +11,9 @@ export const useSignUpActions = () => {
   // const setVotes = useSetRecoilState(VotesAtom);
   const { notify } = useNotify();
 
-
   const registerUser = useCallback(async (dto: RegisterUserDto) => {
     try {
-      const response = await fetchWrapper.post(
-        'users/register/',
-        dto,
-      );
+      const response = await fetchWrapper.post('users/register/', dto);
 
       return response;
     } catch (error) {

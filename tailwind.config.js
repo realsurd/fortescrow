@@ -20,6 +20,7 @@ module.exports = {
         'custom-gradient': 'linear-gradient(to right, #006877, #39693C)',
         'gradient-background': 'linear-gradient(to bottom, #CCE0FF,#E5EFFF)',
         'diagonal-gradient': 'linear-gradient(to right,  #808080, #F7FAFF)',
+        'diagonal-gradients': 'linear-gradient(to right,  #808080, #F7FAFF)',
       },
       boxShadow: {
         'custom-shadow': '0 4px 6px rgba(0, 0, 0, 0.10)',
