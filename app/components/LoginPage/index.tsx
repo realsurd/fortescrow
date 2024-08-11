@@ -51,6 +51,7 @@ export function LoginPage() {
     if(response.error){
       notify.error('Invalid Login Credentials');
       setLoading(false);
+      console.log(response);
       return;
     }else{
       setLoading(false);
