@@ -4,8 +4,9 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { data } from './mock';
 import { SelectDropDown } from './selectDropDown';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNotify } from '@/hooks';
+import { useKYCActions } from '@/features/kyc/actions/kyc.action';
 
 interface FormCompleteProps {
   id: number;
@@ -21,6 +22,13 @@ interface FormProps {
   country: string;
   state: string;
   homeAddress: string;
+}
+
+interface CountriesProps{
+  id: number;
+  name: string;
+  code: string;
+  phone_code: string;
 }
 
 const initialState: FormProps = {
@@ -39,9 +47,12 @@ export const PersonalForm = () => {
   const [personalForm, setPersonalForm] = useState<FormProps>(initialState);
   const [gender, setGender] = useState('Select one');
   const [country, setCountry] = useState('Select one');
+  const[countries, setCountries] = useState<CountriesProps[]>([]);
   const [state, setState] = useState('Select one');
   const [MeansOfId, setMeansOfId] = useState('Select one');
   const {notify} = useNotify();
+  const {getCountries} = useKYCActions();
+  const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e: any) => {
     setPersonalForm({ ...personalForm, [e.target.name]: e.target.value });
@@ -66,6 +77,21 @@ export const PersonalForm = () => {
     }
   };
 
+  const fetchCountries = async () => {
+    setLoading(true);
+
+    const response = await getCountries();
+
+    if(response?.error){
+      setLoading(true);
+      notify.error('Error fetching countires, check your network');
+    }else{
+      setLoading(false);
+      setCountries(response);
+    }
+  }
+
+  console.log(countries)
   const next =()=>{
     router.push('/nextofkin');
     console.log({fullName: personalForm.fullName, email: personalForm.email, address: personalForm.homeAddress, dob: personalForm.dateOfBirth, gender, state, country, MeansOfId, nin: personalForm.nin});
@@ -86,7 +112,17 @@ export const PersonalForm = () => {
       </div>
     );
   };
+  const countriesNames = countries?.map(obj => obj.name);
+  console.log(countriesNames);
 
+  const countryId = [...countries]?.filter((obj)=> obj.name === country);
+  const [countryObj] = [...countryId]
+  console.log(countryId);
+  console.log(countryObj?.id);
+
+  useEffect(()=>{
+    fetchCountries();
+  },[])
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
@@ -161,7 +197,7 @@ export const PersonalForm = () => {
             <label>Country</label>
             <SelectDropDown
               placeholder="Select one.."
-              options={['Algeria', 'Nigeria', 'Tinusia']}
+              options={countriesNames}
               value={country}
               onChange={(val)=> setCountry(val)}
             />

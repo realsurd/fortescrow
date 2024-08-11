@@ -9,7 +9,7 @@ export const useVerifyActions = () => {
   const getUserOTP = useCallback(async (dto: GetOtpUserDto) => {
     try {
       const response = await fetchWrapper.post(
-        '/users/users/request-new-otp',
+        'users/users/request-new-otp',
         dto,
       );
 
@@ -24,7 +24,7 @@ export const useVerifyActions = () => {
   const VerfiyUserOTP = useCallback(async (otp: number) => {
     try {
       const response = await fetchWrapper.post(
-        '/users/users/verify-email',
+        'users/users/verify-email',
         {otp},
       );
 

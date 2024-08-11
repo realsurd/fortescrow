@@ -6,7 +6,7 @@ interface SelectProps {
   placeholder: string;
   options: string[];
   value?: any;
-  onChange?: (val:string) => any;
+  onChange?: (val:any) => any;
 }
 
 export const SelectDropDown = ({
