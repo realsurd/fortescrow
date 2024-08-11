@@ -433,6 +433,8 @@ import { useState } from 'react';
 import { useNotify } from '@/hooks';
 import { useSignUpActions } from '@/features/signup/actions/signup.action';
 import { ThreeDots } from 'react-loader-spinner';
+import { useRouter } from 'next/router';
+import { useVerifyActions } from '@/features/verification/actions/verification.action';
 
 export function SignUpPage() {
   const [firstName, setFirstName] = useState<string>('');
@@ -445,6 +447,8 @@ export function SignUpPage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const { registerUser } = useSignUpActions();
+  const { getUserOTP } = useVerifyActions();
+  const { push } = useRouter();
 
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
@@ -505,7 +509,7 @@ export function SignUpPage() {
       const response = await registerUser(registeredData);
 
       if (response.error) {
-        notify.error(response.error?.toString() || 'Network error');
+        notify.error('user with this E-mail Address already exists');
         setLoading(false);
         return;
       } else {
@@ -520,7 +524,21 @@ export function SignUpPage() {
         setPhone('');
         //success notification
         notify.success('User successfully signed up.');
+        handleSendOtp();
       }
+    }
+  };
+
+  const handleSendOtp = async () => {
+    //send the data to the api endpoint
+    const response = await getUserOTP({ email });
+
+    if (response.error) {
+      notify.error('Invalid email or email is already verified');
+      return;
+    } else {
+      notify.success(`OTP sent to ${email} successfully.`);
+      setTimeout(() => push('/verification'), 2000);
     }
   };
 
@@ -539,7 +557,7 @@ export function SignUpPage() {
             <img
               src="https://res.cloudinary.com/dlinprg6k/image/upload/v1715559930/fort-background_jyso4x.jpg"
               alt="Background"
-              className="w-full h-screen object-cover absolute opacity-10"
+              className="w-full h-screen object-cover absolute opacity-20"
             />
             <div className="flex w-full">
               <div className="flex flex-col justify-start items-start w-full mt-2 mr-5 mb-2 ml-5 p-3 leading-3">

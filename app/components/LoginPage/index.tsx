@@ -49,7 +49,7 @@ export function LoginPage() {
     const response = await signInUser(loginData);
 
     if (response.error) {
-      notify.error(response.error?.toString() || 'Network error');
+      notify.error('Invalid Login Credentials');
       setLoading(false);
       return;
     } else {
@@ -60,7 +60,7 @@ export function LoginPage() {
       //success notification
       notify.success('User successfully signed in.');
       //pushes user to the next page
-      push('/knowyourcustomer');
+      push('/personalform');
     }
   };
 
