@@ -446,9 +446,9 @@ export function SignUpPage() {
   const [phone, setPhone] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
-  const {registerUser} = useSignUpActions();
+  const { registerUser } = useSignUpActions();
   const { getUserOTP } = useVerifyActions();
-  const {push} = useRouter();
+  const { push } = useRouter();
 
   const { width } = useWindowDimensions();
   const isMobile = width ? width < 768 : false;
@@ -508,7 +508,7 @@ export function SignUpPage() {
       //send the data to the api endpoint
       const response = await registerUser(registeredData);
 
-      if(response.error){
+      if (response.error) {
         notify.error('user with this E-mail Address already exists');
         setLoading(false);
         return;
@@ -529,20 +529,18 @@ export function SignUpPage() {
     }
   };
 
-  const handleSendOtp = async ()=>{
+  const handleSendOtp = async () => {
     //send the data to the api endpoint
-    const response = await getUserOTP({email});
+    const response = await getUserOTP({ email });
 
-    if(response.error){
+    if (response.error) {
       notify.error('Invalid email or email is already verified');
       return;
-    }else{
+    } else {
       notify.success(`OTP sent to ${email} successfully.`);
-      setTimeout(()=>(
-        push('/verification')
-      ), 2000);
+      setTimeout(() => push('/verification'), 2000);
     }
-  }
+  };
 
   return (
     <div className="md:flex md:justify-between md:font-space-grotesk md:items-start md:w-[100%] md:h-screen md:mb-10 md:overflow-y-auto">
@@ -559,7 +557,7 @@ export function SignUpPage() {
             <img
               src="https://res.cloudinary.com/dlinprg6k/image/upload/v1715559930/fort-background_jyso4x.jpg"
               alt="Background"
-              className="w-full h-screen object-cover absolute opacity-10"
+              className="w-full h-screen object-cover absolute opacity-20"
             />
             <div className="flex w-full">
               <div className="flex flex-col justify-start items-start w-full mt-2 mr-5 mb-2 ml-5 p-3 leading-3">
