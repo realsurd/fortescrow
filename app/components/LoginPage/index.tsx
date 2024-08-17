@@ -48,7 +48,7 @@ export function LoginPage() {
     //send the data to the api endpoint
     const response = await signInUser(loginData);
 
-    if(response.error){
+    if (response.error) {
       notify.error('Invalid Login Credentials');
       setLoading(false);
       console.log(response);
