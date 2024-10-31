@@ -5,13 +5,9 @@ import { LoginUserDto } from '@/interfaces';
 export const useLoginActions = () => {
   const fetchWrapper = useFetchWrapper();
 
-
   const signInUser = useCallback(async (dto: LoginUserDto) => {
     try {
-      const response = await fetchWrapper.post(
-        'users/users/signin',
-        dto,
-      );
+      const response = await fetchWrapper.post('users/users/signin', dto);
 
       return response;
     } catch (error) {

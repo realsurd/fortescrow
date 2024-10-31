@@ -19,7 +19,7 @@ module.exports = {
       backgroundImage: {
         'custom-gradient': 'linear-gradient(to right, #006877, #39693C)',
         'gradient-background': 'linear-gradient(to bottom, #CCE0FF,#E5EFFF)',
-        'diagonal-gradient': 'linear-gradient(to right,  #1019280D, #F7FAFF)',
+        'diagonal-gradient': 'linear-gradient(to right, #F7FAFF, #1019280D)',
         'diagonal-gradients': 'linear-gradient(to right,  #808080, #F7FAFF)',
       },
       boxShadow: {

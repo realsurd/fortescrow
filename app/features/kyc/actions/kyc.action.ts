@@ -4,12 +4,9 @@ import { useCallback } from 'react';
 export const useKYCActions = () => {
   const fetchWrapper = useFetchWrapper();
 
-
   const getBanks = useCallback(async () => {
     try {
-      const response = await fetchWrapper.get(
-        'core/banks/'
-      );
+      const response = await fetchWrapper.get('core/banks/');
 
       return response;
     } catch (error) {
@@ -21,10 +18,7 @@ export const useKYCActions = () => {
 
   const getBank = useCallback(async (id: number) => {
     try {
-      const response = await fetchWrapper.get(
-        `core/banks/${id}/`,
-        {id},
-      );
+      const response = await fetchWrapper.get(`core/banks/${id}/`, { id });
 
       return response;
     } catch (error) {
@@ -36,9 +30,7 @@ export const useKYCActions = () => {
 
   const getCountries = useCallback(async () => {
     try {
-      const response = await fetchWrapper.get(
-        'core/countries/'
-      );
+      const response = await fetchWrapper.get('core/countries/');
 
       return response;
     } catch (error) {
@@ -49,10 +41,7 @@ export const useKYCActions = () => {
   }, []);
   const getCountry = useCallback(async (id: number) => {
     try {
-      const response = await fetchWrapper.get(
-        `core/countries/${id}/`,
-        {id},
-      );
+      const response = await fetchWrapper.get(`core/countries/${id}/`, { id });
 
       return response;
     } catch (error) {
@@ -64,9 +53,7 @@ export const useKYCActions = () => {
 
   const getStates = useCallback(async () => {
     try {
-      const response = await fetchWrapper.get(
-        'core/states/'
-      );
+      const response = await fetchWrapper.get('core/states/');
 
       return response;
     } catch (error) {
@@ -78,10 +65,7 @@ export const useKYCActions = () => {
 
   const getState = useCallback(async (id: number) => {
     try {
-      const response = await fetchWrapper.get(
-        `core/states/${id}/`,
-        {id},
-      );
+      const response = await fetchWrapper.get(`core/states/${id}/`, { id });
 
       return response;
     } catch (error) {

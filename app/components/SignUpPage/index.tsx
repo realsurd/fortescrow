@@ -649,7 +649,7 @@ export function SignUpPage() {
               </div>
             </div>
 
-            <div className="justify-center text-[10px] items-center font-space-grotesk bg-[#FFF] w-[85%] mx-5 rounded-md p-10">
+            <div className="justify-center text-[10px] items-center font-space-grotesk bg-[#ffffff] w-[85%] mx-5 rounded-md p-10">
               <div className=" flex items-center">
                 <FaQuoteLeft style={style} />
               </div>
