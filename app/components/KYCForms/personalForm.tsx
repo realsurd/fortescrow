@@ -24,7 +24,7 @@ interface FormProps {
   homeAddress: string;
 }
 
-interface CountriesProps{
+interface CountriesProps {
   id: number;
   name: string;
   code: string;
@@ -47,11 +47,11 @@ export const PersonalForm = () => {
   const [personalForm, setPersonalForm] = useState<FormProps>(initialState);
   const [gender, setGender] = useState('Select one');
   const [country, setCountry] = useState('Select one');
-  const[countries, setCountries] = useState<CountriesProps[]>([]);
+  const [countries, setCountries] = useState<CountriesProps[]>([]);
   const [state, setState] = useState('Select one');
   const [MeansOfId, setMeansOfId] = useState('Select one');
-  const {notify} = useNotify();
-  const {getCountries} = useKYCActions();
+  const { notify } = useNotify();
+  const { getCountries } = useKYCActions();
   const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e: any) => {
@@ -65,15 +65,27 @@ export const PersonalForm = () => {
       personalForm.email ||
       personalForm.fullName ||
       personalForm.homeAddress ||
-      personalForm.state != '' && gender || country || state || MeansOfId != 'select one'
+      (personalForm.state != '' && gender) ||
+      country ||
+      state ||
+      MeansOfId != 'select one'
     ) {
-      
       console.log('data successfully subitted');
-      notify.success('data successfully subitted')
-      console.log({fullName: personalForm.fullName, email: personalForm.email, address: personalForm.homeAddress, dob: personalForm.dateOfBirth, gender, state, country, MeansOfId, nin: personalForm.nin});
+      notify.success('data successfully subitted');
+      console.log({
+        fullName: personalForm.fullName,
+        email: personalForm.email,
+        address: personalForm.homeAddress,
+        dob: personalForm.dateOfBirth,
+        gender,
+        state,
+        country,
+        MeansOfId,
+        nin: personalForm.nin,
+      });
       router.push('/nextofkin');
-    }else{
-      notify.error('fill all details')
+    } else {
+      notify.error('fill all details');
     }
   };
 
@@ -82,20 +94,30 @@ export const PersonalForm = () => {
 
     const response = await getCountries();
 
-    if(response?.error){
+    if (response?.error) {
       setLoading(true);
       notify.error('Error fetching countires, check your network');
-    }else{
+    } else {
       setLoading(false);
       setCountries(response);
     }
-  }
+  };
 
-  console.log(countries)
-  const next =()=>{
+  console.log(countries);
+  const next = () => {
     router.push('/nextofkin');
-    console.log({fullName: personalForm.fullName, email: personalForm.email, address: personalForm.homeAddress, dob: personalForm.dateOfBirth, gender, state, country, MeansOfId, nin: personalForm.nin});
-  }
+    console.log({
+      fullName: personalForm.fullName,
+      email: personalForm.email,
+      address: personalForm.homeAddress,
+      dob: personalForm.dateOfBirth,
+      gender,
+      state,
+      country,
+      MeansOfId,
+      nin: personalForm.nin,
+    });
+  };
 
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
@@ -112,17 +134,17 @@ export const PersonalForm = () => {
       </div>
     );
   };
-  const countriesNames = countries?.map(obj => obj.name);
+  const countriesNames = countries?.map((obj) => obj.name);
   console.log(countriesNames);
 
-  const countryId = [...countries]?.filter((obj)=> obj.name === country);
-  const [countryObj] = [...countryId]
+  const countryId = [...countries]?.filter((obj) => obj.name === country);
+  const [countryObj] = [...countryId];
   console.log(countryId);
   console.log(countryObj?.id);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchCountries();
-  },[])
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
@@ -180,7 +202,7 @@ export const PersonalForm = () => {
               placeholder="Select one.."
               options={['Male', 'Female']}
               value={gender}
-              onChange={(val)=> setGender(val)}
+              onChange={(val) => setGender(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -199,7 +221,7 @@ export const PersonalForm = () => {
               placeholder="Select one.."
               options={countriesNames}
               value={country}
-              onChange={(val)=> setCountry(val)}
+              onChange={(val) => setCountry(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -208,7 +230,7 @@ export const PersonalForm = () => {
               placeholder="Select one.."
               options={['Abuja', 'Lagos', 'Imo', 'Nigeria', 'Tinusia']}
               value={state}
-              onChange={(val)=> setState(val)}
+              onChange={(val) => setState(val)}
             />
           </div>
           <div className={styles.inputLongest}>
@@ -228,7 +250,7 @@ export const PersonalForm = () => {
               placeholder="Select one"
               options={['NIN', 'Passport']}
               value={MeansOfId}
-              onChange={(val)=> setMeansOfId(val)}
+              onChange={(val) => setMeansOfId(val)}
             />
           </div>
           <div className={styles.inputContainer}>

@@ -6,7 +6,7 @@ interface SelectProps {
   placeholder: string;
   options: string[];
   value?: any;
-  onChange?: (val:any) => any;
+  onChange?: (val: any) => any;
 }
 
 export const SelectDropDown = ({
@@ -21,7 +21,7 @@ export const SelectDropDown = ({
   useEffect(() => {
     setSelectedValue(value);
   }, [value]);
-  
+
   return (
     <div className={styles.selectContainer}>
       <div
@@ -29,9 +29,7 @@ export const SelectDropDown = ({
         onClick={() => setDropDownActive(!dropDownActive)}
       >
         {selectedValue}
-        <MdArrowDropDown
-          className={styles.icon}
-        />
+        <MdArrowDropDown className={styles.icon} />
       </div>
       {dropDownActive && (
         <div className={styles.options}>
@@ -51,7 +49,7 @@ export const SelectDropDown = ({
               onClick={() => {
                 setSelectedValue(item);
                 setDropDownActive(!dropDownActive);
-                onChange(item)
+                onChange(item);
               }}
             >
               {item}

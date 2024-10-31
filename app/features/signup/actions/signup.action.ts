@@ -1,7 +1,6 @@
 import { useNotify } from '@/hooks';
 import { useFetchWrapper } from '@/hooks/useFetchWrapper';
 import { useCallback } from 'react';
-import { useSetRecoilState } from 'recoil';
 // import { ProposalsAtom, VotesAtom } from '../state/governance.atom';
 import { RegisterUserDto } from '@/interfaces';
 

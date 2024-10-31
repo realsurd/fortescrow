@@ -1,10 +1,8 @@
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import styles from './index.module.scss';
-import Link from 'next/link';
 
 export function WelcomePage() {
   const { width } = useWindowDimensions();
-  const isMobile = width ? width < 768 : false;
 
   return (
     <div className={styles.container}>
