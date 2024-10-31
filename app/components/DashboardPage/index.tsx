@@ -12,43 +12,54 @@ export function DashboardPage() {
   const [connectWalletModal, setConnectWalletModal] = useState(false);
   const { activeAddress, providers } = useWallet();
   const { notify } = useNotify();
+
   const disconnectWallet = () => {
     providers?.forEach((provider) => provider.disconnect());
   };
+
   const clearConnectModal = () => {
     setConnectWalletModal(false);
   };
+
   const connectWalletMessage = () => {
     setTimeout(() => {
       notify.info(`Please Connect Your Wallet`);
     }, 1500);
   };
+
   const toggleConnectWallet = () => {
     setConnectWalletModal(!connectWalletModal);
   };
+
   const isMobile = width ? width < 768 : false;
 
   return (
-    <div className="flex h-screen bg-gray-100 font-space-grotesk">
+    <div className="flex w-full h-[100vh] overflow-y-auto bg-gray-100 font-space-grotesk">
+      {/* Wallet Modal */}
       {connectWalletModal && (
         <ConnectWalletModal
           isActive={activeAddress ? false : true}
           onclick={clearConnectModal}
         />
       )}
-      {/* sidebar */}
-      <div className="w-64 shadow text-black flex-shrink-0">
-        <Link href={'/'}>
-          <div className="p-4 text-center font-bold text-xl text-[#006877]">
-            Fortescrow
-          </div>
-        </Link>
 
-        <nav className="mt-4 ">
-          <div className="w-full flex items-center text-white my-2 mx-4  cursor-pointer">
-            <div className="justify-center items-center p-2 rounded-lg bg-[#006877]">
+      {/* Sidebar */}
+      <div className="w-[20%] shadow text-black min-h-screen">
+        <div className="p-3">
+          <Link href={'/'}>
+            <div className="p-4 font-bold text-xl text-[#006877]">
+              Fortescrow
+            </div>
+            <div className="w-full border-b-2 border-[#006877]"></div>
+          </Link>
+        </div>
+
+        {/* Navigation */}
+        <nav className="w-full h-[100vh] mt-4">
+          <div className="w-full flex items-center text-white my-1 mx-4 cursor-pointer">
+            <div className="justify-center items-center p-2 rounded-lg">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718109979/overview_neolyk.png"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729826284/pie-chart_yv4nhb.png"
                 alt="overview"
                 className="w-[25px]"
               />
@@ -58,23 +69,28 @@ export function DashboardPage() {
             </div>
           </div>
 
-          <div className="w-[85%] flex items-center text-white my-2 mx-4  cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
-            <div className="justify-center items-center p-2 rounded-lg bg-[#D5F7FF]">
+          {/* Additional Navigation Items */}
+          <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+            <div className="justify-center items-center p-2 rounded-lg">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110406/transactions_jb0otx.png"
-                alt="overview"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729643031/arrow-data-transfer-diagonal_yjjmly.png"
+                alt="transactions"
                 className="w-[25px]"
               />
             </div>
-            <div className="w-[70%] justify-center items-center text-[#008396] p-2  rounded-lg">
-              <a href="#">Transactions</a>
-            </div>
+            <Link
+              href="/transaction"
+              className="w-[70%] justify-center items-center text-[#008396] p-2 rounded-lg"
+            >
+              Transactions
+            </Link>
           </div>
-          <div className="w-[85%] flex items-center text-white my-2 mx-4  cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+
+          <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
             <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
               <img
                 src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110406/wallet_famhul.png"
-                alt="overview"
+                alt="wallet"
                 className="w-[25px]"
               />
             </div>
@@ -82,11 +98,12 @@ export function DashboardPage() {
               <a href="#">Wallet</a>
             </div>
           </div>
-          <div className="w-[85%] flex items-center text-white my-2 mx-4  cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+
+          <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
             <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110406/market_wdkpyu.png"
-                alt="overview"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729643142/store-01_hdlmam.png"
+                alt="marketplace"
                 className="w-[25px]"
               />
             </div>
@@ -94,11 +111,12 @@ export function DashboardPage() {
               <a href="#">Marketplace</a>
             </div>
           </div>
-          <div className="w-[85%] flex items-center text-white my-2 mx-4  cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+
+          <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
             <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110406/inbox_h6udy4.png"
-                alt="overview"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729644157/message-02_ardyp8.png"
+                alt="inbox"
                 className="w-[25px]"
               />
             </div>
@@ -106,11 +124,12 @@ export function DashboardPage() {
               <a href="#">Inbox</a>
             </div>
           </div>
-          <div className="w-[85%] flex items-center text-white my-2 mx-4  cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+
+          <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
             <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
               <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110406/disputes_ljiyf6.png"
-                alt="overview"
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729644444/Frame_47_3_jhmkt9.png"
+                alt="disputes"
                 className="w-[25px]"
               />
             </div>
@@ -118,43 +137,53 @@ export function DashboardPage() {
               <a href="#">Disputes</a>
             </div>
           </div>
+
+          <div className="w-full mt-[150px]">
+            <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+              <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
+                <img
+                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729646945/Frame_47_4_j7rs0t.png"
+                  alt="settings"
+                  className="w-[25px]"
+                />
+              </div>
+              <div className="w-[70%] justify-center items-center p-2 text-[#008396] rounded-lg">
+                <a href="#">Settings</a>
+              </div>
+            </div>
+            <div className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg">
+              <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
+                <img
+                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729648937/Frame_47_5_horqlw.png"
+                  alt="settings"
+                  className="w-[25px]"
+                />
+              </div>
+              <div className="w-[70%] justify-center items-center p-2 text-[#008396] rounded-lg">
+                <a href="#">Help Center</a>
+              </div>
+            </div>
+            <div className="flex justify-center items-center p-2 rounded-lg">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110827/QR-invite_mqor7p.png"
+                alt="qr-code"
+                className="w-[100%]"
+              />
+            </div>
+          </div>
         </nav>
-        <div className="flex justify-center items-center p-2 rounded-lg">
-          <img
-            src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110827/QR-invite_mqor7p.png"
-            alt="overview"
-            className="w-[50%]"
-          />
-        </div>
       </div>
 
-      {/* <!-- Main Content --> */}
-      <div className="flex flex-col flex-grow">
-        {/* <!-- Header --> */}
-        <header className="bg-white  p-4 flex justify-between items-center">
+      {/* Main Content */}
+      <div className="w-full flex flex-col flex-grow p-10">
+        <header className="p-4 flex justify-between items-center">
           <div className="flex flex-col text-[#948F94] text-sm">
             <h1 className="text-xl font-semibold">Overview</h1>
             <p>Hi Micah, Welcome to ForteScrow 🤗</p>
           </div>
 
           <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center bg-[#9ED49C4D]  rounded-full">
-              <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718185963/deposit_pp1hcp.png"
-                alt="wallet-deposit"
-                className="w-[30px]"
-              />
-              <button className=" text-[#39693C] px-4 py-2">Deposit</button>
-            </div>
-            <div className="flex items-center justify-center bg-[#FFDAD64D]  rounded-full">
-              <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718186305/money-remove-02_bxuqnu.png"
-                alt="wallet-deposit"
-                className="w-[30px]"
-              />
-              <button className=" text-[#410002] px-4 py-2">Withdraw</button>
-            </div>
-            <div className="flex items-center justify-center bg-custom-gradient text-white text-sm  rounded-full">
+            <div className="flex items-center justify-center bg-custom-gradient text-white text-sm rounded-full">
               <img
                 src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718186692/wallet-submit_yinv7s.png"
                 alt="wallet-deposit"
@@ -170,38 +199,66 @@ export function DashboardPage() {
                 }}
               >
                 {activeAddress
-                  ? `${activeAddress?.substring(0, 3)}` +
-                    `...` +
-                    `${activeAddress?.substring(55)}`
+                  ? `${activeAddress?.substring(
+                      0,
+                      3,
+                    )}...${activeAddress?.substring(55)}`
                   : ` Connect Wallet`}
               </button>
             </div>
-            <div className="flex items-center justify-center p-2 bg-[#FFDAD64D]  text-white text-sm  rounded-full">
+            <div className="flex items-center justify-center p-2 bg-[#FFDAD64D] text-white text-sm rounded-full">
               <img
                 src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718186779/notification-03_mhrjle.png"
-                alt="wallet-deposit"
+                alt="notification"
                 className="w-[20px]"
               />
             </div>
-            <div className="flex items-center justify-center p-2  text-white text-sm  rounded-full">
+            <div className="flex items-center justify-center p-2 text-white text-sm rounded-full">
               <img
                 src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718188298/man_zlajzs.png"
-                alt="wallet-deposit"
+                alt="user-avatar"
                 className="w-[40px]"
               />
             </div>
           </div>
         </header>
 
-        {/* <!-- Content --> */}
-        <main className="flex-grow p-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-4">
-              Welcome to the Dashboard
-            </h2>
-            <p className="text-gray-700">
-              This is where your main content will go.
-            </p>
+        {/* Content */}
+        <main className="flex-col">
+          <div className="flex justify-between items-center gap-4">
+            <div className="shadow-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729642711/fiat_balance_uh2rqo.png"
+                alt="fiat-balance"
+              />
+            </div>
+            <div className="shadow-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729642711/algo_balance_tu4p0o.png"
+                alt="algo-balance"
+              />
+            </div>
+            <div className="shadow-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729642711/algo_balance_tu4p0o.png"
+                alt="algo-balance"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-between items-start gap-4 mt-[50px]">
+            <div className="shadow-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729645225/Basic_Bar_Chart_knjhxt.png"
+                alt="bar-chart"
+              />
+            </div>
+            <div className="shadow-md">
+              <img
+                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729645225/Basic_Bar_Chart_knjhxt.png"
+                alt="bar-chart"
+              />
+            </div>
           </div>
         </main>
       </div>

@@ -5,7 +5,6 @@ import { GetOtpUserDto, LoginUserDto, VerfyOtpUserDto } from '@/interfaces';
 export const useVerifyActions = () => {
   const fetchWrapper = useFetchWrapper();
 
-
   const getUserOTP = useCallback(async (dto: GetOtpUserDto) => {
     try {
       const response = await fetchWrapper.post(
@@ -23,10 +22,9 @@ export const useVerifyActions = () => {
 
   const VerfiyUserOTP = useCallback(async (otp: number) => {
     try {
-      const response = await fetchWrapper.post(
-        '/users/users/verify-email',
-        {otp},
-      );
+      const response = await fetchWrapper.post('/users/users/verify-email', {
+        otp,
+      });
 
       return response;
     } catch (error) {
