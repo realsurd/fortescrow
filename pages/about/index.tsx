@@ -1,5 +1,5 @@
-import { About } from '@/features/about/pages/about';
+// import { About } from '@/features/about/pages/about';
 
-export default function Page() {
-  return <About />;
-}
+// export default function Page() {
+//   return <About />;
+// }

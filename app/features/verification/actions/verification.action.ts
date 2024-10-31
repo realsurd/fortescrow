@@ -22,10 +22,9 @@ export const useVerifyActions = () => {
 
   const VerfiyUserOTP = useCallback(async (otp: number) => {
     try {
-      const response = await fetchWrapper.post(
-        'users/users/verify-email',
-        {otp},
-      );
+      const response = await fetchWrapper.post('users/users/verify-email', {
+        otp,
+      });
 
       return response;
     } catch (error) {

@@ -52,15 +52,22 @@ export const NextoFKinForm = () => {
       personalForm.homeAddress ||
       personalForm.state != ''
     ) {
-      
       console.log('data successfully subitted');
       router.push('/bankform');
     }
   };
-  const next =()=>{
+  const next = () => {
     router.push('/bankform');
-    console.log({firstName: personalForm.firstName, lastName: personalForm.lastName, relationship, gender, state, phone: personalForm.phone, address: personalForm.homeAddress })
-  }
+    console.log({
+      firstName: personalForm.firstName,
+      lastName: personalForm.lastName,
+      relationship,
+      gender,
+      state,
+      phone: personalForm.phone,
+      address: personalForm.homeAddress,
+    });
+  };
   const FormCompletionCard = ({ id, title, text }: FormCompleteProps) => {
     return (
       <div
@@ -108,9 +115,10 @@ export const NextoFKinForm = () => {
         <div className={styles.form}>
           <div className={styles.inputContainer}>
             <label>First Name</label>
-            <input type="text" 
-              placeholder="Tom" 
-              required 
+            <input
+              type="text"
+              placeholder="Tom"
+              required
               name={'firstName'}
               value={personalForm.firstName}
               onChange={handleOnChange}
@@ -118,12 +126,13 @@ export const NextoFKinForm = () => {
           </div>
           <div className={styles.inputContainer}>
             <label>Last Name</label>
-            <input type="text" 
-              placeholder="Last Name.." 
+            <input
+              type="text"
+              placeholder="Last Name.."
               name={'lastName'}
               value={personalForm.lastName}
               onChange={handleOnChange}
-              required 
+              required
             />
           </div>
           <div className={styles.inputContainer}>
@@ -132,7 +141,7 @@ export const NextoFKinForm = () => {
               placeholder="Select one.."
               options={['Male', 'Female']}
               value={gender}
-              onChange={(val)=> setGender(val)}
+              onChange={(val) => setGender(val)}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -141,13 +150,14 @@ export const NextoFKinForm = () => {
               placeholder="Select one.."
               options={['Mother', 'Father', 'Brother', 'Sister']}
               value={relationship}
-              onChange={(val)=> setRelationship(val)}
+              onChange={(val) => setRelationship(val)}
             />
           </div>
           <div className={styles.inputContainer}>
             <label>Phone Number</label>
-            <input type="number" 
-              placeholder="Enter phone number..." 
+            <input
+              type="number"
+              placeholder="Enter phone number..."
               name={'phone'}
               value={personalForm.phone}
               onChange={handleOnChange}
@@ -159,17 +169,18 @@ export const NextoFKinForm = () => {
               placeholder="Select one.."
               options={['Abuja', 'Lagos', 'Imo', 'Nigeria', 'Tinusia']}
               value={state}
-              onChange={(val)=> setState(val)}
+              onChange={(val) => setState(val)}
             />
           </div>
           <div className={styles.inputLongest}>
             <label>Home Address</label>
-            <input type="text" 
-              placeholder="House ABC, No 123..." 
+            <input
+              type="text"
+              placeholder="House ABC, No 123..."
               name={'homeAddress'}
               value={personalForm.homeAddress}
               onChange={handleOnChange}
-              required 
+              required
             />
           </div>
         </div>

@@ -26,13 +26,13 @@ export function LoginPage() {
   const { signInUser } = useLoginActions();
 
   const { notify } = useNotify();
-  
-  const isEmpty = !email || !password  ? true : false;
+
+  const isEmpty = !email || !password ? true : false;
 
   const handleSubmit = async () => {
     setLoading(true);
 
-    if(isEmpty){
+    if (isEmpty) {
       notify.error('Fill all details');
       setLoading(false);
       return;
@@ -41,7 +41,7 @@ export function LoginPage() {
     const loginData = {
       email,
       password,
-    }
+    };
 
     console.log(loginData);
 
@@ -52,7 +52,7 @@ export function LoginPage() {
       notify.error('Invalid Login Credentials');
       setLoading(false);
       return;
-    }else{
+    } else {
       setLoading(false);
       //clear off the input fields
       setEmail('');
@@ -62,8 +62,7 @@ export function LoginPage() {
       //pushes user to the next page
       push('/personalform');
     }
-  
-  }
+  };
 
   return (
     <div className="flex justify-between font-space-grotesk items-start w-full h-[100vh] mb-10 overflow-y-auto">
@@ -215,7 +214,7 @@ export function LoginPage() {
               className="h-10 border text-[13px] border-gray-300 mt-1 mb-2 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
               placeholder="Userexample@gmail.com"
               value={email}
-              onChange={(e:any) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value)}
             />
           </div>
 
@@ -229,7 +228,7 @@ export function LoginPage() {
                 className="h-10 border text-[13px] border-gray-300 mt-1 rounded-md p-4 w-full bg-gray-50 focus:outline-none focus:border-[#006877] focus:ring-1 focus:ring-[#006877] focus:shadow-sm focus:shadow-white"
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e:any) => setPassword(e.target.value)}
+                onChange={(e: any) => setPassword(e.target.value)}
               />
               <p className="flex justify-end items-end font-inter text-[#4C4C4C] text-sm">
                 forgot password?
@@ -245,7 +244,8 @@ export function LoginPage() {
           </div>
 
           <div className="w-full">
-            <button className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md"
+            <button
+              className="p-3 border w-full items-center bg-custom-gradient text-white rounded-md"
               onClick={handleSubmit}
             >
               {loading && (
