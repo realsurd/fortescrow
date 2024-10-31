@@ -1,6 +1,6 @@
 import { useFetchWrapper } from '@/hooks/useFetchWrapper';
 import { useCallback } from 'react';
-import { GetOtpUserDto, LoginUserDto, VerfyOtpUserDto } from '@/interfaces';
+import { GetOtpUserDto } from '@/interfaces';
 
 export const useVerifyActions = () => {
   const fetchWrapper = useFetchWrapper();
