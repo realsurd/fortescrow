@@ -19,11 +19,12 @@ import styles from './index.module.scss';
 import Link from 'next/link';
 import { cases, data, faqs, options, testimonials } from './mock';
 import Marquee from 'react-fast-marquee';
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export function LandingPage() {
   // const [activeDropDown, setActiveDropDown] = useState(false);
   // const [activeDropDownTwo, setActiveDropDownTwo] = useState(false);
-  // const [openSideNav, setOpenSideNav] = useState(false);
+  const [openSideNav, setOpenSideNav] = useState(false);
   const [checked, setChecked] = useState<number>(-1);
   const [selectedCards, setSelectedCards] = useState(testimonials.slice(0, 3));
 
@@ -61,8 +62,44 @@ export function LandingPage() {
 
   return (
     <div className={styles['container']}>
+       {openSideNav && (
+          <div className={styles['mobile-side-nav']}>
+            <header>
+              <div className={styles['mobile-logo']}>
+                <Link href={'/'} className={styles['link']}>
+                  Fortescrow
+                </Link>
+              </div>
+              <div
+                className={styles['mobile-menu-bar']}
+                onClick={() => setOpenSideNav(false)}
+              >
+                <img
+                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1710200265/menu-01_1_btjqaf.png"
+                  alt="bar"
+                />
+              </div>
+            </header>
+            <div className={styles['nav-section']}>
+              <div className={styles['nav-list']}>
+                <Link className={styles['nav-item']} href="/">
+                  About Us
+                </Link>
+                <Link className={styles['nav-item']} href="/">
+                  Contact Us
+                </Link>
+                <Link className={styles['nav-item']} href="/login">
+                  Login
+                </Link>
+                <Link className={styles['nav-item']} href="/signup">
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       <div className={styles['hero-section']}>
-        {!isMobile && (
+        {!isMobile ? (
           <div className={styles['desktop-header']}>
             <Link className={styles['logo']} href={'/'}>
               ForteScrow
@@ -90,6 +127,13 @@ export function LandingPage() {
                 Login
               </Link>
             </div>
+          </div>
+        ) : ( 
+          <div className={styles['mobile-header']}>
+            <Link className={styles['logo']} href={'/'}>
+              ForteScrow
+            </Link>
+            <RxHamburgerMenu className={styles['menu-bar']} onClick={() => setOpenSideNav(true)}/>
           </div>
         )}
         <div className={styles['inner-hero']}>
@@ -182,9 +226,12 @@ export function LandingPage() {
       {/* end of Partners section */}
       <div className={styles['how-it-works']}>
         <div className={styles['top']}>
-          <div className={styles['title']}>
-            How <span>ForteScrow</span> works
-          </div>
+          <div className={styles['title-line']}>
+            <div className={styles['title']}>
+              How <span>ForteScrow</span> works
+            </div>
+            <div className={styles['line']}></div>
+            </div>
           <div className={styles['body']}>
             Real-time transaction tracking, and round-the-clock customer
             support, ensuring a hassle-free experience for all users.
@@ -329,34 +376,65 @@ export function LandingPage() {
           </div>
         </div>
         <div className={styles['cards']}>
-          {selectedCards.map((item, index) => (
-            <div className={styles['card']} key={index}>
-              <img
-                src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248471/Text_fqjthi.png"
-                alt="quote"
-                className={styles['quote']}
-              />
-              <div className={styles['top']}>
-                <div className={styles['left']}>
-                  <img src={item.img} alt="avatar" />
-                  <div className={styles['info']}>
-                    <div className={styles['name']}>{item.name}</div>
-                    <div className={styles['title']}>{item.title}</div>
+          {
+            !isMobile ? (
+              selectedCards.map((item, index) => (
+                <div className={styles['card']} key={index}>
+                  <img
+                    src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248471/Text_fqjthi.png"
+                    alt="quote"
+                    className={styles['quote']}
+                  />
+                  <div className={styles['top']}>
+                    <div className={styles['left']}>
+                      <img src={item.img} alt="avatar" />
+                      <div className={styles['info']}>
+                        <div className={styles['name']}>{item.name}</div>
+                        <div className={styles['title']}>{item.title}</div>
+                      </div>
+                    </div>
+                    <div className={styles['right']}>
+                      {[1, 2, 3, 4, 5].map((item, index) => (
+                        <FaStar key={index} className={styles['star']} />
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles['body']}>{item.text}</div>
+                  <div className={styles['read-more']}>
+                    Read More
+                    <FaArrowRight className={styles['icon']} />
                   </div>
                 </div>
-                <div className={styles['right']}>
-                  {[1, 2, 3, 4, 5].map((item, index) => (
-                    <FaStar key={index} className={styles['star']} />
-                  ))}
+              ))
+            ):(
+              <div className={styles['mobile-card']}>
+                <img
+                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248471/Text_fqjthi.png"
+                  alt="quote"
+                  className={styles['quote']}
+                />
+                <div className={styles['top']}>
+                  <div className={styles['left']}>
+                    <img src="https://res.cloudinary.com/dlinprg6k/image/upload/v1716248132/Image_1_ety96j.png" alt="avatar" />
+                    <div className={styles['info']}>
+                      <div className={styles['name']}>Sarah Johnson</div>
+                      <div className={styles['title']}>CEO Boutique</div>
+                    </div>
+                  </div>
+                  <div className={styles['right']}>
+                    {[1, 2, 3, 4, 5].map((item, index) => (
+                      <FaStar key={index} className={styles['star']} />
+                    ))}
+                  </div>
+                </div>
+                <div className={styles['body']}>{`"As a seller, ForteScrow has been a game-changer for me. I no longer have to deal with the stress of fraudulent buyers or chargebacks."`}</div>
+                <div className={styles['read-more']}>
+                  Read More
+                  <FaArrowRight className={styles['icon']} />
                 </div>
               </div>
-              <div className={styles['body']}>{item.text}</div>
-              <div className={styles['read-more']}>
-                Read More
-                <FaArrowRight className={styles['icon']} />
-              </div>
-            </div>
-          ))}
+            )
+          }
         </div>
         <FaArrowLeft className={styles.btnleft} onClick={() => prevBtn()} />
         <FaArrowRight className={styles.btnright} onClick={() => nextBtn()} />
@@ -398,26 +476,6 @@ export function LandingPage() {
             </div>
           </div>
           <div className={styles['right']}>
-            <div className={styles['group-link']}>
-              <div className={styles['title']}>Footer Link</div>
-              <div className={styles['links']}>
-                <Link href={'/'} className={styles['link']}>
-                  Footer Link
-                </Link>
-                <Link href={'/'} className={styles['link']}>
-                  Footer Link
-                </Link>
-                <Link href={'/'} className={styles['link']}>
-                  Footer Link
-                </Link>
-                <Link href={'/'} className={styles['link']}>
-                  Footer Link
-                </Link>
-                <Link href={'/'} className={styles['link']}>
-                  Footer Link
-                </Link>
-              </div>
-            </div>
             <div className={styles['group-link']}>
               <div className={styles['title']}>Footer Link</div>
               <div className={styles['links']}>
