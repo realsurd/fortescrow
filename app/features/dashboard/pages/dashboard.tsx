@@ -1,5 +1,10 @@
 import { DashboardPage } from '@/components/DashboardPage';
+import { AuthWrapper } from '@/components/shared/AuthWrapper';
 
 export function Dashboard() {
-  return <DashboardPage />;
+  return (
+    <AuthWrapper>
+      <DashboardPage />
+    </AuthWrapper>
+  );
 }

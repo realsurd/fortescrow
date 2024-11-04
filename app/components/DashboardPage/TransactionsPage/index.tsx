@@ -2,12 +2,13 @@ import { useWindowDimensions } from '../../../hooks/useWindowDimensions';
 import { BiCircleThreeQuarter } from 'react-icons/bi';
 import Link from 'next/link';
 import { useWallet } from '@txnlab/use-wallet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ConnectWalletModal } from '../connectModal';
 import { useNotify } from '@/hooks';
 import { FaSearch } from 'react-icons/fa';
 import { TransactionTypeModal } from './TransactionTypeModal';
 import { OneTimeTransactionModal } from './OneTimeTransactionModal';
+import { useDashboardActions } from '@/features/dashboard/actions/dashboard.action';
 
 export function TransactionPage() {
   const { width } = useWindowDimensions();

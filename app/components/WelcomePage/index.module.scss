@@ -1,15 +1,15 @@
-@import "../../../styles/index.scss";
+@import '../../../styles/index.scss';
 
-.container{
+.container {
   width: 100%;
   min-height: 100vh;
   scroll-behavior: smooth;
   display: flex;
   align-items: center;
   justify-content: center;
-  background:#f8f8f8;
+  background: #f8f8f8;
 
-  .card{
+  .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,31 +21,31 @@
     padding: 62px;
     gap: 60px;
 
-    .top{
+    .top {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 20px;
 
-      .textContainer{
+      .textContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 4px;
-        
-        .heading{
-          color: #615D61;
-          font-family: "Avenir";
+
+        .heading {
+          color: #615d61;
+          font-family: 'Avenir';
           font-size: 22px;
           font-weight: 800;
           line-height: 28px;
           text-transform: capitalize;
         }
-        .author{
+        .author {
           color: #006877;
-          font-family: "Space Grotesk";
+          font-family: 'Space Grotesk';
           font-size: 45px;
           font-weight: 700;
           line-height: 64px;
@@ -53,13 +53,13 @@
           text-transform: capitalize;
         }
       }
-      .paragraph{
+      .paragraph {
         display: flex;
         flex-direction: column;
 
-        .text{
+        .text {
           color: #a38b89;
-          font-family: "Avenir";
+          font-family: 'Avenir';
           font-size: 20px;
           font-weight: 350;
           line-height: 32px;
@@ -67,16 +67,16 @@
         }
       }
     }
-    .button{
+    .button {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 80px;
-      background: linear-gradient(90deg, #006877 0%, #39693C 100%);
+      background: linear-gradient(90deg, #006877 0%, #39693c 100%);
       padding: 18px 20px;
       border-radius: 10px;
       color: #fff;
-      font-family: "Space Grotesk";
+      font-family: 'Space Grotesk';
       font-size: 22px;
       font-weight: 700;
       line-height: 28px;

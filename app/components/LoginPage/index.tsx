@@ -8,6 +8,7 @@ import { useNotify } from '@/hooks';
 import { useRouter } from 'next/router';
 import { useLoginActions } from '@/features/login/actions/login.action';
 import { ThreeDots } from 'react-loader-spinner';
+import { LoginUserDto } from '@/interfaces';
 
 export function LoginPage() {
   const { width } = useWindowDimensions();
@@ -38,12 +39,10 @@ export function LoginPage() {
       return;
     }
 
-    const loginData = {
-      email,
+    const loginData: LoginUserDto = {
+      username: email,
       password,
     };
-
-    console.log(loginData);
 
     //send the data to the api endpoint
     const response = await signInUser(loginData);
@@ -54,13 +53,10 @@ export function LoginPage() {
       return;
     } else {
       setLoading(false);
-      //clear off the input fields
       setEmail('');
       setPassword('');
-      //success notification
       notify.success('User successfully signed in.');
-      //pushes user to the next page
-      push('/personalform');
+      push('/welcome');
     }
   };
 

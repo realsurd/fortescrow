@@ -3,8 +3,7 @@ import { RequestMethod } from '../../enums/requestMethod.enum';
 import { RequestOptions } from '../../interfaces/requestOption.interface';
 
 export const useFetchWrapper = () => {
-  const apiUrl = 'https://pacific-falls-58232-f0dc2c883d9b.herokuapp.com';
-
+  const apiUrl = `https://fortescrow-api.onrender.com`;
   const handleResponse = useCallback((response: any) => {
     return response.text().then(async (text: string) => {
       const data = text && JSON.parse(text);
