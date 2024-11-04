@@ -3,15 +3,44 @@ import { BiCircleThreeQuarter } from 'react-icons/bi';
 import '../../../styles/main.css';
 import Link from 'next/link';
 import { useWallet } from '@txnlab/use-wallet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ConnectWalletModal } from './connectModal';
 import { useNotify } from '@/hooks';
+import { useLoginActions } from '@/features/login/actions/login.action';
+import { useDashboardActions } from '@/features/dashboard/actions/dashboard.action';
 
 export function DashboardPage() {
   const { width } = useWindowDimensions();
   const [connectWalletModal, setConnectWalletModal] = useState(false);
   const { activeAddress, providers } = useWallet();
   const { notify } = useNotify();
+  const { logout } = useLoginActions();
+
+  const [loading, setLoading] = useState(false);
+  const { getUsers } = useDashboardActions();
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState<any>();
+
+  const emailId = localStorage.getItem('emailId');
+
+  const fetchUsers = async () => {
+    setLoading(true);
+
+    const response = await getUsers();
+
+    if (response?.error) {
+      notify.error('Network issues');
+      setLoading(false);
+      return;
+    } else {
+      setLoading(false);
+      setUsers(response);
+      setUser(response?.filter((item: any) => item?.email === emailId));
+    }
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const disconnectWallet = () => {
     providers?.forEach((provider) => provider.disconnect());
@@ -163,6 +192,21 @@ export function DashboardPage() {
                 <a href="#">Help Center</a>
               </div>
             </div>
+            <div
+              className="w-[85%] flex items-center text-white my-2 mx-4 cursor-pointer hover:bg-[#D5F7FF] hover:rounded-lg"
+              onClick={() => logout()}
+            >
+              <div className="justify-center items-center p-2 rounded-lg text-[#008396]">
+                <img
+                  src="https://res.cloudinary.com/dlinprg6k/image/upload/v1729648937/Frame_47_5_horqlw.png"
+                  alt="settings"
+                  className="w-[25px]"
+                />
+              </div>
+              <div className="w-[70%] justify-center items-center p-2 text-[#008396] rounded-lg">
+                <a href="#">Logout</a>
+              </div>
+            </div>
             <div className="flex justify-center items-center p-2 rounded-lg">
               <img
                 src="https://res.cloudinary.com/dlinprg6k/image/upload/v1718110827/QR-invite_mqor7p.png"
@@ -179,7 +223,10 @@ export function DashboardPage() {
         <header className="p-4 flex justify-between items-center">
           <div className="flex flex-col text-[#948F94] text-sm">
             <h1 className="text-xl font-semibold">Overview</h1>
-            <p>Hi Micah, Welcome to ForteScrow 🤗</p>
+            <p>
+              Hi {!loading ? user?.[0].first_name : `...`}, Welcome to
+              ForteScrow 🤗
+            </p>
           </div>
 
           <div className="flex items-center space-x-4">

@@ -1,5 +1,10 @@
 import { TransactionPage } from '@/components/DashboardPage/TransactionsPage';
+import { AuthWrapper } from '@/components/shared/AuthWrapper';
 
 export function Transaction() {
-  return <TransactionPage />;
+  return (
+    <AuthWrapper>
+      <TransactionPage />
+    </AuthWrapper>
+  );
 }

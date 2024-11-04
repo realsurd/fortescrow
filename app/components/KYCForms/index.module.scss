@@ -1,6 +1,6 @@
-@import "../../../styles/index.scss";
+@import '../../../styles/index.scss';
 
-.container{
+.container {
   width: 100vw;
   height: 100vh;
   scroll-behavior: smooth;
@@ -10,33 +10,34 @@
   overflow-y: auto;
 }
 
-.leftContainer{
+.leftContainer {
   display: flex;
   gap: 50px;
   flex-direction: column;
   width: 342px;
   height: 100vh;
-  border-right: 1px solid #E5EFFF;
+  border-right: 1px solid #e5efff;
   padding-top: 100px;
   padding-right: 0;
   padding-left: 20px;
-  background: #F7FAFF;
+  background: #f7faff;
 
-  .heading{
+  .heading {
     color: #006877;
     cursor: pointer;
-    font-family: "Space Grotesk";
+    font-family: 'Space Grotesk';
     font-size: 30px;
     font-weight: 700;
     line-height: 40px;
   }
-  .completionCards{
+  .completionCards {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
 }
-.formComplete, .formActive{
+.formComplete,
+.formActive {
   display: flex;
   gap: 16px;
   padding: 16px;
@@ -44,46 +45,44 @@
   align-items: center;
   border-radius: 16px 0px 0px 16px;
 
-  .number{
+  .number {
     color: #808080;
-    font-family: "Inter";
+    font-family: 'Inter';
     font-size: 20px;
     font-weight: 500;
     line-height: 30px;
   }
-  .content{
+  .content {
     display: flex;
     flex-direction: column;
     gap: 4px;
 
-    .title{
-      color:#49464A;
-      font-family: "Inter";
+    .title {
+      color: #49464a;
+      font-family: 'Inter';
       font-size: 16px;
       font-weight: 350;
       line-height: 30px;
     }
-    .text{
+    .text {
       color: #999999;
-      font-family: "Inter";
+      font-family: 'Inter';
       font-size: 16px;
       font-weight: 300;
       line-height: 27px;
     }
   }
-  .checked{
+  .checked {
     color: #28a745;
     width: 30px;
     height: 30px;
   }
 }
-.formActive{
+.formActive {
   background-color: #fff;
 }
 
-
-
-.rightContainer{
+.rightContainer {
   flex: 1;
   display: flex;
   height: 100vh;
@@ -92,109 +91,110 @@
   gap: 50px;
   padding: 40px 120px 40px 120px;
   background: #f8f8f8;
-  
-  .skip{
+
+  .skip {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    color: #615D61;
-    font-family: "Avenir";
+    color: #615d61;
+    font-family: 'Avenir';
     font-size: 20px;
     font-weight: 350;
     line-height: 32px;
   }
-  .headerContainer{
+  .headerContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
 
-    .title{
+    .title {
       color: #006877;
-      font-family: "Space Grotesk";
+      font-family: 'Space Grotesk';
       font-size: 35px;
       font-weight: 700;
       line-height: 64px;
       letter-spacing: -0.25px;
     }
-    .text{
-      color: #615D61;
-      font-family: "Avenir";
+    .text {
+      color: #615d61;
+      font-family: 'Avenir';
       font-size: 20px;
       font-weight: 350;
       line-height: 32px;
     }
   }
-  .form{
+  .form {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(2, 1fr);
 
-
-    .inputContainer, .inputLongest{
+    .inputContainer,
+    .inputLongest {
       display: flex;
       flex-direction: column;
       gap: 14px;
       grid-column: auto;
 
-      label{
-        color:#333333;
-        font-family: "Inter";
+      label {
+        color: #333333;
+        font-family: 'Inter';
         font-size: 18px;
         font-weight: 350;
         line-height: 27px;
       }
-      input{
-        border: 1px solid #AFAAAE;
+      input {
+        border: 1px solid #afaaae;
         background-color: #fff;
         border-radius: 10px;
-        font-family: "Inter";
+        font-family: 'Inter';
         font-size: 18px;
         font-weight: 400;
         line-height: 27px;
         padding: 24px;
         height: 50px;
-       
-        &:active{
-          box-shadow: 0px 0px 5px 0px #764EAC;
+
+        &:active {
+          box-shadow: 0px 0px 5px 0px #764eac;
         }
       }
     }
-    .inputLongest{
-      grid-column: 1/span 2;
+    .inputLongest {
+      grid-column: 1 / span 2;
     }
-    .selectContainer{
+    .selectContainer {
       display: flex;
       flex-direction: column;
       gap: 3px;
-      font-family: "Inter";
+      font-family: 'Inter';
       font-size: 18px;
       font-weight: 400;
       line-height: 27px;
       position: relative;
 
-      .selectInput, .activeSelect{
+      .selectInput,
+      .activeSelect {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 50px;
         border-radius: 10px;
-        color: #AFAAAE;
+        color: #afaaae;
         padding: 24px;
-        border: 1px solid #AFAAAE;
+        border: 1px solid #afaaae;
         background-color: #fff;
 
-        .icon{
+        .icon {
           color: black;
           cursor: pointer;
         }
       }
-      .activeSelect{
-        box-shadow: 0px 0px 5px 0px #764EAC;
+      .activeSelect {
+        box-shadow: 0px 0px 5px 0px #764eac;
       }
-      .options{
+      .options {
         position: absolute;
         left: 0;
         right: 0;
@@ -202,7 +202,7 @@
         bottom: 0;
         display: flex;
         flex-direction: column;
-        border: 1px solid #AFAAAE;
+        border: 1px solid #afaaae;
         background: #fff;
         height: 120px;
         scroll-behavior: smooth;
@@ -227,32 +227,32 @@
           border: 3px solid #f2f4f7;
         }
 
-        option{
+        option {
           display: flex;
           padding: 10px;
           min-height: 35px;
           cursor: pointer;
 
-          &:hover{
-            background-color: #49464A;
+          &:hover {
+            background-color: #49464a;
             color: #fff;
           }
         }
       }
     }
   }
-  .submit{
+  .submit {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     border-radius: 10px;
     padding: 18px 20px;
-    font-family: "Space Grotesk";
+    font-family: 'Space Grotesk';
     font-size: 22px;
     font-weight: 700;
     line-height: 28px;
-    background: linear-gradient(90deg, #006877 0%, #39693C 100%);
+    background: linear-gradient(90deg, #006877 0%, #39693c 100%);
     cursor: pointer;
   }
 }

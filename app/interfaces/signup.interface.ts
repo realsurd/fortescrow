@@ -1,7 +1,7 @@
 export interface RegisterUserDto {
   first_name: string;
   last_name: string;
-  password: string;
+  hashed_password: string;
   email: string;
-  user_type: string;
+  role: string;
 }

@@ -1,5 +1,10 @@
 import { WelcomePage } from '@/components/WelcomePage';
+import { AuthWrapper } from '@/components/shared/AuthWrapper';
 
 export function Welcome() {
-  return <WelcomePage />;
+  return (
+    <AuthWrapper>
+      <WelcomePage />
+    </AuthWrapper>
+  );
 }

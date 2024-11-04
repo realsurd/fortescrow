@@ -1,2 +1,0 @@
-BUSINESS = "Business"
-CLIENT = "Individual"
